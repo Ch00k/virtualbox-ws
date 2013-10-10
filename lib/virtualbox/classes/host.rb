@@ -78,7 +78,6 @@ module VBox
 
     # Methods
 
-    #TODO ???
     def create_host_only_network_interface
       progress, host_only_network_interface = VBox::WebService.send_request(:i_host_create_host_only_network_interface,
                                                                             _this)

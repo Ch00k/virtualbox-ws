@@ -184,7 +184,6 @@ module VBox
       VBox::WebService.send_request(:i_virtual_box_get_guest_os_type, _this.merge(args))
     end
 
-    #TODO Mapping?
     def get_machine_states(args={})
       ensure_hash(args)
       if args.has_key?(:machines)
