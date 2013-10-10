@@ -37,7 +37,6 @@ module VBox
       VBox::WebService.send_request(:i_guest_session_set_environment, _this.merge(:environment => environment))
     end
 
-    #TODO IGuestProcess has no methods
     def processes
       guest_processes = VBox::WebService.send_request(:i_guest_session_get_processes, _this)
       guest_processes.map do |guest_process|
@@ -45,7 +44,6 @@ module VBox
       end
     end
 
-    #TODO IGuestDirectory has no methods
     def directories
       directories = VBox::WebService.send_request(:i_guest_session_get_directories, _this)
       directories.map do |directory|
@@ -53,7 +51,6 @@ module VBox
       end
     end
 
-    #TODO IGuestFile has no methods
     def files
       files = VBox::WebService.send_request(:i_guest_session_get_files, _this)
       files.map do |file|
@@ -94,14 +91,12 @@ module VBox
       VBox::WebService.send_request(:i_guest_session_directory_exists, _this.merge(args))
     end
 
-    #TODO IGuestDirectory has no methods
     def directory_open(args={})
       ensure_hash(args)
       guest_directory = VBox::WebService.send_request(:i_guest_session_directory_open, _this.merge(args))
       VBox::GuestDirectory.new(guest_directory)
     end
 
-    #TODO IGuestFsObjInfo has no methods
     def directory_query_info(args={})
       ensure_hash(args)
       fs_obj_info = VBox::WebService.send_request(:i_guest_session_directory_query_info, _this.merge(args))
@@ -148,7 +143,6 @@ module VBox
       VBox::WebService.send_request(:i_guest_session_environment_unset, _this.merge(args))
     end
 
-    #TODO IGuestFile has no methods
     def file_create_temp(args={})
       ensure_hash(args)
       guest_file = VBox::WebService.send_request(:i_guest_session_file_create_temp, _this.merge(args))
@@ -160,14 +154,12 @@ module VBox
       VBox::WebService.send_request(:i_guest_session_file_exists, _this.merge(args))
     end
 
-    #TODO IGuestFile has no methods
     def file_open(args={})
       ensure_hash(args)
       guest_file = VBox::WebService.send_request(:i_guest_session_file_open, _this.merge(args))
       VBox::GuestFile.new(guest_file)
     end
 
-    #TODO IGuestFsObjInfo has no methods
     def file_query_info(args={})
       ensure_hash(args)
       fs_obj_info = VBox::WebService.send_request(:i_guest_session_file_query_info, _this.merge(args))
@@ -194,21 +186,18 @@ module VBox
       VBox::WebService.send_request(:i_guest_session_file_set_acl, _this.merge(args))
     end
 
-    #TODO IGuestProcess has no methods
     def process_create(args={})
       ensure_hash(args)
       guest_process = VBox::WebService.send_request(:i_guest_session_process_create, _this.merge(args))
       VBox::GuestProcess.new(guest_process)
     end
 
-    #TODO IGuestProcess has no methods
     def process_create_ex(args={})
       ensure_hash(args)
       guest_process = VBox::WebService.send_request(:i_guest_session_process_create_ex, _this.merge(args))
       VBox::GuestProcess.new(guest_process)
     end
 
-    #TODO IGuestProcess has no methods
     def process_get(args={})
       ensure_hash(args)
       guest_process = VBox::WebService.send_request(:i_guest_session_process_get, _this.merge(args))

@@ -82,7 +82,6 @@ module VBox
       end
     end
 
-    #TODO Map this back to objects
     def guest_os_types
       VBox::WebService.send_request(:i_virtual_box_get_guest_os_types, _this)
     end
@@ -180,7 +179,6 @@ module VBox
       VBox::WebService.send_request(:i_virtual_box_get_extra_data_keys, _this)
     end
 
-    #TODO Map this back to objects
     def get_guest_os_type(args={})
       ensure_hash(args)
       VBox::WebService.send_request(:i_virtual_box_get_guest_os_type, _this.merge(args))
