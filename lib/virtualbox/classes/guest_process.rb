@@ -1,5 +1,5 @@
 module VBox
-  class GuestProcess < Process
+  class GuestProcess < VBox::Process
 
     attr_reader :ref
 
