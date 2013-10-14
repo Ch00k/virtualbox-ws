@@ -84,7 +84,7 @@ module VBox
     # Methods
 
     def add_redirect(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:inat_engine_add_redirect, _this.merge(args))
     end
 
@@ -93,12 +93,12 @@ module VBox
     end
 
     def remove_redirect(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:inat_engine_remove_redirect, _this.merge(args))
     end
 
     def set_network_settings(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:inat_engine_set_network_settings, _this.merge(args))
     end
   end

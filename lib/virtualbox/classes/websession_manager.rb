@@ -14,7 +14,7 @@ module VBox
     # Methods
 
     def logon(args={})
-      ensure_hash(args)
+      ensure_hash args
       key = VBox::WebService.send_request(:i_websession_manager_logon, args)
       @ref = key
       VBox::VirtualBox.new(key)

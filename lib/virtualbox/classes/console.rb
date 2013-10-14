@@ -67,63 +67,63 @@ module VBox
     # Methods
 
     def adopt_saved_state(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_console_adopt_saved_state, _this.merge(args))
     end
 
     def attach_usb_device(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_console_attach_usb_device, _this.merge(args))
     end
 
     def create_shared_folder(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_console_create_shared_folder, _this.merge(args))
     end
 
     def delete_snapshot(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:i_console_delete_snapshot, _this.merge(args))
       VBox::Progress.new(progress)
     end
 
     def delete_snapshot_and_all_children(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:i_console_delete_snapshot_and_all_children, _this.merge(args))
       VBox::Progress.new(progress)
     end
 
     def delete_snapshot_range(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:i_console_delete_snapshot_range, _this.merge(args))
       VBox::Progress.new(progress)
     end
 
     def detach_usb_device(args={})
-      ensure_hash(args)
+      ensure_hash args
       usb_device = VBox::WebService.send_request(:i_console_detach_usb_device, _this.merge(args))
       VBox::USBDevice.new(usb_device)
     end
 
     def discard_saved_state(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_console_discard_saved_state, _this.merge(args))
     end
 
     def find_usb_device_by_address(args={})
-      ensure_hash(args)
+      ensure_hash args
       usb_device = VBox::WebService.send_request(:i_console_find_usb_device_by_address, _this.merge(args))
       VBox::USBDevice.new(usb_device)
     end
 
     def find_usb_device_by_id(args={})
-      ensure_hash(args)
+      ensure_hash args
       usb_device = VBox::WebService.send_request(:i_console_find_usb_device_by_id, _this.merge(args))
       VBox::USBDevice.new(usb_device)
     end
 
     def get_device_activity(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_console_get_device_activity, _this.merge(args))
     end
 
@@ -159,7 +159,7 @@ module VBox
     end
 
     def remove_shared_folder(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_console_remove_shared_folder, _this.merge(args))
     end
 
@@ -168,7 +168,7 @@ module VBox
     end
 
     def restore_snapshot(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:i_console_restore_snapshot, _this.merge(args))
       VBox::Progress.new(progress)
     end

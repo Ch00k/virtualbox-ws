@@ -169,38 +169,38 @@ module VBox
     # Methods
 
     def get_default_io_cache_setting_for_storage_controller(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_system_properties_get_default_io_cache_setting_for_storage_controller,
                                     _this.merge(args))
     end
 
     def get_device_types_for_storage_bus(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_system_properties_get_device_types_for_storage_bus, _this.merge(args))
     end
 
     def get_max_instances_of_storage_bus(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_system_properties_get_max_instances_of_storage_bus, _this.merge(args))
     end
 
     def get_max_network_adapters(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_system_properties_get_max_network_adapters, _this.merge(args))
     end
 
     def get_max_network_adapters_of_type(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_system_properties_get_max_network_adapters_of_type, _this.merge(args))
     end
 
     def get_max_port_count_for_storage_bus(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_system_properties_get_max_port_count_for_storage_bus, _this.merge(args))
     end
 
     def get_min_port_count_for_storage_bus(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_system_properties_get_min_port_count_for_storage_bus, _this.merge(args))
     end
   end

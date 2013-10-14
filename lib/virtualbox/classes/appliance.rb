@@ -25,7 +25,7 @@ module VBox
     # Methods
 
     def create_vfs_explorer(args={})
-      ensure_hash(args)
+      ensure_hash args
       vfs_explorer = VBox::WebService.send_request(:i_appliance_create_vfs_explorer, _this.merge(args))
       VBox::VFSExplorer.new(vfs_explorer)
     end
@@ -35,13 +35,13 @@ module VBox
     end
 
     def read(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:i_appliance_read, _this.merge(args))
       VBox::Progress.new(progress)
     end
 
     def write(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:i_appliance_write, _this.merge(args))
       VBox::Progress.new(progress)
     end

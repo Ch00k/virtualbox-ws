@@ -10,7 +10,7 @@ module VBox
     # Methods
 
     def disable_metrics(args={})
-      ensure_hash(args)
+      ensure_hash args
       performance_metrics = VBox::WebService.send_request(:i_performance_collector_disable_metrics, _this.merge(args))
       performance_metrics.map do |performance_metric|
         VBox::PerformanceMatric.new(performance_metric)
@@ -18,7 +18,7 @@ module VBox
     end
 
     def enable_metrics(args={})
-      ensure_hash(args)
+      ensure_hash args
       performance_metrics = VBox::WebService.send_request(:i_performance_collector_enable_metrics, _this.merge(args))
       performance_metrics.map do |performance_metric|
         VBox::PerformanceMatric.new(performance_metric)
@@ -26,7 +26,7 @@ module VBox
     end
 
     def get_metrics(args={})
-      ensure_hash(args)
+      ensure_hash args
       performance_metrics = VBox::WebService.send_request(:i_performance_collector_get_metrics, _this.merge(args))
       performance_metrics.map do |performance_metric|
         VBox::PerformanceMatric.new(performance_metric)
@@ -34,12 +34,12 @@ module VBox
     end
 
     def query_metrics_data(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_performance_collector_query_metrics_data, _this.merge(args))
     end
 
     def setup_metrics(args={})
-      ensure_hash(args)
+      ensure_hash args
       performance_metrics = VBox::WebService.send_request(:i_performance_collector_setup_metrics, _this.merge(args))
       performance_metrics.map do |performance_metric|
         VBox::PerformanceMatric.new(performance_metric)

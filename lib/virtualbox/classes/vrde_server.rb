@@ -66,12 +66,12 @@ module VBox
     # Methods
 
     def get_vrde_property(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:ivrde_server_get_vrde_property, _this.merge(args))
     end
 
     def set_vrde_property(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:ivrde_server_set_vrde_property, _this.merge(args))
     end
   end

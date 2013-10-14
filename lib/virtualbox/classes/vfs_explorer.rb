@@ -14,13 +14,13 @@ module VBox
     # Methods
 
     def cd(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:ivfs_explorer_cd, _this.merge(args))
       VBox::Progress.new(progress)
     end
 
     def cd_up(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:ivfs_explorer_cd_up, _this.merge(args))
       VBox::Progress.new(progress)
     end
@@ -30,18 +30,18 @@ module VBox
     end
 
     def exists(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:ivfs_explorer_exists, _this.merge(args))
     end
 
     def remove(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:ivfs_explorer_remove, _this.merge(args))
       VBox::Progress.new(progress)
     end
 
     def update(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:ivfs_explorer_update, _this.merge(args))
       VBox::Progress.new(progress)
     end

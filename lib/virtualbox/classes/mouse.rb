@@ -23,12 +23,12 @@ module VBox
     # Methods
 
     def put_mouse_event(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_mouse_put_mouse_event, _this)
     end
 
     def put_mouse_event_absolute(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_mouse_put_mouse_event_absolute, _this)
     end
   end

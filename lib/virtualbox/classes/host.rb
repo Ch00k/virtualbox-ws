@@ -84,31 +84,31 @@ module VBox
     end
 
     def create_usb_device_filter(args={})
-      ensure_hash(args)
+      ensure_hash args
       usb_device_filter = VBox::WebService.send_request(:i_host_create_usb_device_filter, _this.merge(args))
       VBox::HostUSBDeviceFilter.new(usb_device_filter)
     end
 
     def find_host_dvd_drive(args={})
-      ensure_hash(args)
+      ensure_hash args
       host_dvd_drive = VBox::WebService.send_request(:i_host_find_host_dvd_drive, _this.merge(args))
       VBox::Medium.new(host_dvd_drive)
     end
 
     def find_host_floppy_drive(args={})
-      ensure_hash(args)
+      ensure_hash args
       host_floppy_drive = VBox::WebService.send_request(:i_host_find_host_floppy_drive, _this.merge(args))
       VBox::Medium.new(host_floppy_drive)
     end
 
     def find_host_network_interface_by_id(args={})
-      ensure_hash(args)
+      ensure_hash args
       host_network_interface = VBox::WebService.send_request(:i_host_find_host_network_interface_by_id, _this.merge(args))
       VBox::HostNetworkInterface.new(host_network_interface)
     end
 
     def find_host_network_interfaces_of_type(args={})
-      ensure_hash(args)
+      ensure_hash args
       host_network_interfaces = VBox::WebService.send_request(:i_host_find_host_network_interfaces_of_type, _this.merge(args))
       host_network_interfaces.map do |host_network_interface|
         VBox::HostNetworkInterface.new(host_network_interface)
@@ -116,13 +116,13 @@ module VBox
     end
 
     def find_usb_device_by_address(args={})
-      ensure_hash(args)
+      ensure_hash args
       usb_device = VBox::WebService.send_request(:i_host_find_usb_device_by_address, _this.merge(args))
       VBox::HostUSBDevice.new(usb_device)
     end
 
     def find_usb_device_by_id(args={})
-      ensure_hash(args)
+      ensure_hash args
       usb_device = VBox::WebService.send_request(:i_host_find_usb_device_by_id, _this.merge(args))
       VBox::HostUSBDevice.new(usb_device)
     end
@@ -132,38 +132,38 @@ module VBox
     end
 
     def get_processor_cpuid_leaf(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_host_get_processor_cpuid_leaf, _this.merge(args))
     end
 
     def get_processor_description(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_host_get_processor_description, _this.merge(args))
     end
 
     def get_processor_feature(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_host_get_processor_feature, _this.merge(args))
     end
 
     def get_processor_speed(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_host_get_processor_speed, _this.merge(args))
     end
 
     def insert_usb_device_filter(args={})
-      ensure_hash(args)
-      args[:filter] = args[:filter].ref if args.has_key?(:filter) & args[:filter].respond_to?(:ref)
+      ensure_hash args
+      args.referize! :filter
       VBox::WebService.send_request(:i_host_insert_usb_device_filter, _this.merge(args))
     end
 
     def remove_host_only_network_interface(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_host_remove_host_only_network_interface, _this.merge(args))
     end
 
     def remove_usb_device_filter(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_host_remove_usb_device_filter, _this.merge(args))
     end
   end

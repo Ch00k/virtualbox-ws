@@ -39,32 +39,32 @@ module VBox
     end
 
     def read(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_file_read, _this.merge(args))
     end
 
     def read_at(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_file_read_at, _this.merge(args))
     end
 
     def seek(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_file_seek, _this.merge(args))
     end
 
     def set_acl(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_file_set_acl, _this.merge(args))
     end
 
     def write(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_file_write, _this.merge(args))
     end
 
     def write_at(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_file_write_at, _this.merge(args))
     end
   end

@@ -10,12 +10,12 @@ module VBox
     # Methods
 
     def create_bandwidth_group(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_bandwidth_contol_create_bandwidth_group, _this.merge(args))
     end
 
     def delete_bandwidth_group(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_bandwidth_control_delete_bandwidth_group, _this.merge(args))
     end
 

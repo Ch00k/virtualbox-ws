@@ -79,30 +79,28 @@ module VBox
     end
 
     def set_current_operation_progress(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_progress_set_current_operation_progress, _this.merge(args))
     end
 
     def set_next_operation(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_progress_set_next_operation, _this.merge(args))
     end
 
     def wait_for_async_progress_completion(args={})
-      ensure_hash(args)
-      if args.has_key?(:p_progress_async) & args[:p_progress_async].respond_to?(:ref)
-        args[:p_progress_async] = args[:p_progress_async].ref
-      end
+      ensure_hash args
+      args.referize! :p_progress_async
       VBox::WebService.send_request(:i_progress_wait_for_async_progress_completion, _this.merge(args))
     end
 
     def wait_for_completion(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_progress_wait_for_completion, _this.merge(args))
     end
 
     def wait_for_operation_completion(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_progress_wait_for_operation_completion, _this.merge(args))
     end
   end

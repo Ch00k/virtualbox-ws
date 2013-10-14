@@ -34,12 +34,12 @@ module VBox
     # Methods
 
     def set_configuration(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_dhcp_server_set_configuration, _this.merge(args))
     end
 
     def start(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_dhcp_server_start, _this.merge(args))
     end
 

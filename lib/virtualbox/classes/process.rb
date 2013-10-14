@@ -34,7 +34,7 @@ module VBox
     # Methods
 
     def read(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_process_read, _this.merge(args))
     end
 
@@ -43,22 +43,22 @@ module VBox
     end
 
     def wait_for(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_process_wait_for, _this.merge(args))
     end
 
     def wait_for_array(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_process_wait_for_array, _this.merge(args))
     end
 
     def write(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_process_write, _this.merge(args))
     end
 
     def write_array(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_process_write_array, _this.merge(args))
     end
   end

@@ -15,12 +15,12 @@ module VBox
     end
 
     def put_scancode(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_keyboard_get_put_scancode, _this.merge(args))
     end
 
     def put_scancodes(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_keyboard_get_put_scancodes, _this.merge(args))
     end
   end

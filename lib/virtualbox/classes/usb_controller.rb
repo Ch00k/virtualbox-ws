@@ -37,19 +37,19 @@ module VBox
     # Methods
 
     def create_device_filter(args={})
-      ensure_hash(args)
+      ensure_hash args
       device_filter = VBox::WebService.send_request(:iusb_controller_create_device_filter, _this.merge(args))
       VBox::USBDeviceFilter.new(device_filter)
     end
 
     def insert_device_filter(args={})
-      ensure_hash(args)
-      args[:filter] = args[:filter].ref if args.has_key?(:filter) & args[:filter].respond_to?(:ref)
+      ensure_hash args
+      args.referize! :filter
       VBox::WebService.send_request(:iusb_controller_insert_device_filter, _this.merge(args))
     end
 
     def remove_device_filter(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:iusb_controller_remove_device_filter, _this.merge(args))
     end
   end

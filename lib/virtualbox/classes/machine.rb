@@ -546,157 +546,153 @@ module VBox
     # Methods
 
     def add_storage_controller(args={})
-      ensure_hash(args)
+      ensure_hash args
       storage_controller = VBox::WebService.send_request(:i_machine_add_storage_controller, _this.merge(args))
       VBox::StorageController.new(storage_controller)
     end
 
     def attach_device(args={})
-      ensure_hash(args)
-      args[:medium] = args[:medium].ref if args.has_key?(:medium) & args[:medium].respond_to?(:ref)
+      ensure_hash args
+      args.referize! :medium
       VBox::WebService.send_request(:i_machine_attach_device, _this.merge(args))
     end
 
     def attach_device_without_medium(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_attach_device_without_medium, _this.merge(args))
     end
 
     def attach_host_pci_device(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_attach_host_pci_device, _this.merge(args))
     end
 
     def can_show_console_window(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_can_show_console_window, _this.merge(args))
     end
 
     def clone_to(args={})
-      ensure_hash(args)
-      args[:target] = args[:target].ref if args.has_key?(:target) & args[:target].respond_to?(:ref)
+      ensure_hash args
+      args.referize! :target
       progress = VBox::WebService.send_request(:i_machine_clone_to, _this.merge(args))
       VBox::Progress.new(progress)
     end
 
     def create_shared_folder(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_create_shared_folder, _this.merge(args))
     end
 
     def delete(args={})
-      ensure_hash(args)
-      if args.has_key?(:a_media)
-        args[:a_media].map! do |a_medium|
-          a_medium.respond_to?(:ref) ? a_medium.ref : a_medium
-        end
-      end
+      ensure_hash args
+      args.referize! :a_media
       progress = VBox::WebService.send_request(:i_machine_delete, _this.merge(args))
       VBox::Progress.new(progress)
     end
 
     def delete_guest_property(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_delete_guest_property, _this.merge(args))
     end
 
     def detach_device(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_detach_device, _this.merge(args))
     end
 
     def detach_host_pci_device(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_detach_host_pci_device, _this.merge(args))
     end
 
     def discard_settings(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_discard_settings, _this.merge(args))
     end
 
     def enumerate_guest_properties(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_enumerate_guest_properties, _this.merge(args))
     end
 
     def export(args={})
-      ensure_hash(args)
-      args[:a_appliance] = args[:a_appliance].ref if args.has_key?(:a_appliance) & args[:a_appliance].respond_to?(:ref)
+      ensure_hash args
+      args.referize! :a_appliance
       virtual_system_description = VBox::WebService.send_request(:i_machine_export, _this.merge(args))
       VBox::VirtualSystemDescription.new(virtual_system_description)
     end
 
     def find_snapshot(args={})
-      ensure_hash(args)
+      ensure_hash args
       snapshot = VBox::WebService.send_request(:i_machine_find_snapshot, _this.merge(args))
       VBox::Snapshot.new(snapshot)
     end
 
     def get_boot_order(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_get_boot_order, _this.merge(args))
     end
 
     def get_cpu_id_leaf(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_get_cpu_id_leaf, _this.merge(args))
     end
 
     def get_cpu_property(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_get_cpu_property, _this.merge(args))
     end
 
     def get_cpu_status(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_get_cpu_status, _this.merge(args))
     end
 
     def get_extra_data(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_get_extra_data, _this.merge(args))
     end
 
     def get_extra_data_keys(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_get_exrta_data_keys, _this.merge(args))
     end
 
     def get_guest_property(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_get_guest_property, _this.merge(args))
     end
 
     def get_guest_property_timestamp(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_get_guest_property_timestamp, _this.merge(args))
     end
 
     def get_guest_property_value(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_get_guest_property_value, _this.merge(args))
     end
 
     def get_hw_virt_ex_property(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_get_hw_virt_ex_property, _this.merge(args))
     end
 
     def get_medium(args={})
-      ensure_hash(args)
+      ensure_hash args
       medium = VBox::WebService.send_request(:i_machine_get_medium, _this.merge(args))
       VBox::Medium.new(medium)
     end
 
     def get_medium_attachment(args={})
-      ensure_hash(args)
+      ensure_hash args
       medium_attachment = VBox::WebService.send_request(:i_machine_get_medium_attachment, _this.merge(args))
       VBox::Medium.new(medium_attachment)
     end
 
     def get_medium_attachments_of_controller(args={})
-      ensure_hash(args)
+      ensure_hash args
       medium_attachments_of_controller = VBox::WebService.send_request(:i_machine_get_medium_attachments_of_controller,
                                                                        _this.merge(args))
       medium_attachments_of_controller.to_a.map do |medium_attachment_of_controller|
@@ -705,112 +701,112 @@ module VBox
     end
 
     def get_network_adapter(args={})
-      ensure_hash(args)
+      ensure_hash args
       network_adapter = VBox::WebService.send_request(:i_machine_get_network_adapter, _this.merge(args))
       VBox::NetworkAdapter.new(network_adapter)
     end
 
     def get_parallel_port(args={})
-      ensure_hash(args)
+      ensure_hash args
       parallel_port = VBox::WebService.send_request(:i_machine_get_parallel_port, _this.merge(args))
       VBox::ParallelPort.new(parallel_port)
     end
 
     def get_serial_port(args={})
-      ensure_hash(args)
+      ensure_hash args
       serial = VBox::WebService.send_request(:i_machine_get_serial_port, _this.merge(args))
       VBox::SerialPort.new(serial)
     end
 
     def get_storage_controller_by_instance(args={})
-      ensure_hash(args)
+      ensure_hash args
       storage_controller = VBox::WebService.send_request(:i_machine_get_storage_controller_by_instance,
                                                          _this.merge(args))
       VBox::StorageController.new(storage_controller)
     end
 
     def get_storage_controller_by_name(args={})
-      ensure_hash(args)
+      ensure_hash args
       storage_controller = VBox::WebService.send_request(:i_machine_get_storage_controller_by_name, _this.merge(args))
       VBox::StorageController.new(storage_controller)
     end
 
     def hot_plug_cpu(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_hot_plug_cpu, _this.merge(args))
     end
 
     def hot_unplug_cpu(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_hot_unplug_cpu, _this.merge(args))
     end
 
     def launch_vm_process(args={})
-      ensure_hash(args)
-      args[:session] = args[:session].ref if args.has_key?(:session) & args[:session].respond_to?(:ref)
+      ensure_hash args
+      args.referize! :session
       progress = VBox::WebService.send_request(:i_machine_launch_vm_process, _this.merge(args))
       VBox::Progress.new(progress)
     end
 
     def lock_machine(args={})
-      ensure_hash(args)
-      args[:session] = args[:session].ref if args.has_key?(:session) & args[:session].respond_to?(:ref)
+      ensure_hash args
+      args.referize! :session
       VBox::WebService.send_request(:i_machine_lock_machine, _this.merge(args))
     end
 
     def mount_medium(args={})
-      ensure_hash(args)
-      args[:medium] = args[:medium].ref if args.has_key?(:medium) & args[:medium].respond_to?(:ref)
+      ensure_hash args
+      args.referize! :medium
       VBox::WebService.send_request(:i_machine_mount_medium, _this.merge(args))
     end
 
     def non_rotational_device(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_non_rotational_device, _this.merge(args))
     end
 
     def passthrough_device(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_passthrough_device, _this.merge(args))
     end
 
     def query_log_filename(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_query_log_filename, _this.merge(args))
     end
 
     def query_saved_guest_screen_info(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_query_saved_guest_screen_info, _this.merge(args))
     end
 
     def query_saved_screenshot_png_size(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_query_saved_screenshot_png_size, _this.merge(args))
     end
 
     def query_saved_thumbnail_size(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_query_saved_thumbnail_size, _this.merge(args))
     end
 
     def read_log(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_read_log, _this.merge(args))
     end
 
     def read_saved_screenshot_png_to_array(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_read_saved_screenshot_png_to_array, _this.merge(args))
     end
 
     def read_saved_thumbnail_png_to_array(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_read_saved_thumbnail_png_to_array, _this.merge(args))
     end
 
     def read_saved_thumbnail_to_array(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_read_saved_thumbnail_to_array, _this.merge(args))
     end
 
@@ -819,17 +815,17 @@ module VBox
     end
 
     def remove_cpuid_leaf(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_remove_cpuid_leaf, _this.merge(args))
     end
 
     def remove_shared_folder(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_remove_shared_folder, _this.merge(args))
     end
 
     def remove_storage_controller(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_remove_storage_controller, _this.merge(args))
     end
 
@@ -838,60 +834,58 @@ module VBox
     end
 
     def set_auto_discard_for_device(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_set_auto_discard_for_device, _this.merge(args))
     end
 
     def set_bandwidth_group_for_device(args={})
-      ensure_hash(args)
-      if args.has_key?(:bandwidth_group) & args[:bandwidth_group].respond_to?(:ref)
-        args[:bandwidth_group] = args[:bandwidth_group].ref
-      end
+      ensure_hash args
+      args.referize! :bandwidth_group
       VBox::WebService.send_request(:i_machine_set_bandwidth_group_for_device, _this.merge(args))
     end
 
     def set_boot_order(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_set_boot_order, _this.merge(args))
     end
 
     def set_cpuid_leaf(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_set_cpuid_leaf, _this.merge(args))
     end
 
     def set_cpu_property(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_set_cpu_property, _this.merge(args))
     end
 
     def set_extra_data(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_set_extra_data, _this.merge(args))
     end
 
     def set_guest_property(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_set_guest_property, _this.merge(args))
     end
 
     def set_guest_property_value(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_set_guest_property_value, _this.merge(args))
     end
 
     def set_hw_virt_ex_property(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_set_hw_virt_ex_property, _this.merge(args))
     end
 
     def set_no_bandwidth_group_for_device(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_set_no_bandwidth_group_for_device, _this.merge(args))
     end
 
     def set_storage_controller_bootable(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_set_storage_controller_bootable, _this.merge(args))
     end
 
@@ -900,17 +894,17 @@ module VBox
     end
 
     def temporary_eject_device(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_temporary_eject_device, _this.merge(args))
     end
 
     def umnount_medium(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_machine_umount_medium, _this.merge(args))
     end
 
     def unregister(args={})
-      ensure_hash(args)
+      ensure_hash args
       media = VBox::WebService.send_request(:i_machine_unregister, _this.merge(args))
       media.to_a.map do |medium|
         VBox::Medium.new(medium)

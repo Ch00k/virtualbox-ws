@@ -152,17 +152,17 @@ module VBox
     # Methods
 
     def get_properties(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_network_adapter_get_properties, _this.merge(args))
     end
 
     def get_property(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_network_adapter_get_property, _this.merge(args))
     end
 
     def set_property(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_network_adapter_set_property, _this.merge(args))
     end
   end

@@ -54,13 +54,13 @@ module VBox
     # Methods
 
     def create_session(args={})
-      ensure_hash(args)
+      ensure_hash args
       guest_session = VBox::WebService.send_request(:i_guest_create_session, _this.merge(args))
       VBox::GuestSession.new(guest_session)
     end
 
     def drag_gh_dropped(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:i_guest_drag_gh_dropped, _this.merge(args))
       VBox::Progress.new(progress)
     end
@@ -70,38 +70,38 @@ module VBox
     end
 
     def drag_gh_pending(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_guest_drag_gh_pending, _this.merge(args))
     end
 
     def drag_hg_drop(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_guest_drag_hg_drop, _this.merge(args))
     end
 
     def drag_hg_enter(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_guest_drag_hg_enter, _this.merge(args))
     end
 
     def drag_hg_leave(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_guest_drag_hg_leave, _this.merge(args))
     end
 
     def drag_hg_move(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_guest_drag_hg_move, _this.merge(args))
     end
 
     def drag_hg_put_data(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:i_guest_drag_hg_put_data, _this.merge(args))
       VBox::Progress.new(progress)
     end
 
     def find_session(args={})
-      ensure_hash(args)
+      ensure_hash args
       guest_session = VBox::WebService.send_request(:i_guest_find_session, _this.merge(args))
       VBox::GuestSession.new(guest_session)
     end
@@ -119,12 +119,12 @@ module VBox
     end
 
     def set_credentials(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_guest_set_credentials, _this.merge(args))
     end
 
     def update_guest_additions(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:i_guest_update_guest_additions, _this.merge(args))
       VBox::Progress.new(progress)
     end

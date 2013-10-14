@@ -23,7 +23,7 @@ module VBox
     end
 
     def wait_processed(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_event_set_processed, _this.merge(args))
     end
   end

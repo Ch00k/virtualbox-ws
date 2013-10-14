@@ -1,8 +1,4 @@
-require_rel '/../core_ext/string.rb'
-
-
 module VBox
-
   class Base
 
     attr_reader :ref

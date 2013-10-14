@@ -119,12 +119,12 @@ module VBox
     # Methods
 
     def check_firmware_present(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_virtual_box_check_firmware_present, _this.merge(args))
     end
 
     def compose_machine_filename(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_virtual_box_compose_machine_filename, _this.merge(args))
     end
 
@@ -134,42 +134,42 @@ module VBox
     end
 
     def create_dhcp_server(args={})
-      ensure_hash(args)
+      ensure_hash args
       dhcp_server = VBox::WebService.send_request(:i_virtual_box_create_dhcp_server, _this.merge(args))
       VBox::DHCPServer.new(dhcp_server)
     end
 
     def create_hard_disk(args={})
-      ensure_hash(args)
+      ensure_hash args
       hard_disk = VBox::WebService.send_request(:i_virtual_box_create_hard_disk, _this.merge(args))
       VBox::Medium.new(hard_disk)
     end
 
     def create_machine(args={})
-      ensure_hash(args)
+      ensure_hash args
       machine = VBox::WebService.send_request(:i_virtual_box_create_machine, _this.merge(args))
       VBox::Machine.new(machine)
     end
 
     def create_shared_folder(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_virtual_box_create_shared_folder, _this.merge(args))
     end
 
     def find_dhcp_server_by_network_name(args={})
-      ensure_hash(args)
+      ensure_hash args
       dhcp_server = VBox::WebService.send_request(:i_virtual_box_find_dhcp_server_by_network_name, _this.merge(args))
       VBox::DHCPServer.new(dhcp_server)
     end
 
     def find_machine(args={})
-      ensure_hash(args)
+      ensure_hash args
       machine = VBox::WebService.send_request(:i_virtual_box_find_machine, _this.merge(args))
       VBox::Machine.new(machine)
     end
 
     def get_extra_data(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_virtual_box_get_extra_data, _this.merge(args))
     end
 
@@ -178,12 +178,12 @@ module VBox
     end
 
     def get_guest_os_type(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_virtual_box_get_guest_os_type, _this.merge(args))
     end
 
     def get_machine_states(args={})
-      ensure_hash(args)
+      ensure_hash args
       if args.has_key?(:machines)
         args[:machines].map! do |machine|
           machine.ref
@@ -193,7 +193,7 @@ module VBox
     end
 
     def get_machines_by_groups(args={})
-      ensure_hash(args)
+      ensure_hash args
       machines = VBox::WebService.send_request(:i_virtual_box_get_machines_by_groups, _this.merge(args))
       machines.to_a.map do |machine|
         VBox::Machine.new(machine)
@@ -201,7 +201,7 @@ module VBox
     end
 
     def open_machine(args={})
-      ensure_hash(args)
+      ensure_hash args
       machine = VBox::WebService.send_request(:i_virtual_box_open_machine, _this.merge(args))
       VBox::Machine.new(machine)
     end
@@ -212,28 +212,28 @@ module VBox
     end
 
     def register_machine(args={})
-      ensure_hash(args)
+      ensure_hash args
       args[:machine] = args[:machine].ref
       VBox::WebService.send_request(:i_virtual_box_register_machine, _this.merge(args))
     end
 
     def remove_dhcp_server(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_virtual_box_remove_dhcp_server, _this.merge(args))
     end
 
     def remove_shared_folder(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_virtual_box_remove_shared_folder, _this.merge(args))
     end
 
     def set_extra_data(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_virtual_box_set_extra_data, _this.merge(args))
     end
 
     def set_settings_secret(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_virtual_box_set_settings_secret, _this.merge(args))
     end
   end

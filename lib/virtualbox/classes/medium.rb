@@ -112,15 +112,14 @@ module VBox
     # Methods
 
     def clone_to(args={})
-      ensure_hash(args)
-      args[:target] = args[:target].ref if args.has_key?(:target) & args[:target].respond_to?(:ref)
-      args[:parent] = args[:parent].ref if args.has_key?(:parent) & args[:parent].respond_to?(:ref)
+      ensure_hash args
+      args.referize! :target, :parent
       VBox::WebService.send_request(:i_medium_clone_to, _this.merge(args))
     end
 
     def clone_to_base(args={})
-      ensure_hash(args)
-      args[:target] = args[:target].ref if args.has_key?(:target) & args[:target].respond_to?(:ref)
+      ensure_hash args
+      args.referize! :target
       VBox::WebService.send_request(:i_medium_clone_to_base, _this.merge(args))
     end
 
@@ -134,14 +133,14 @@ module VBox
     end
 
     def create_base_storage(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:i_medium_create_base_storage, _this.merge(args))
       VBox::Progress.new(progress)
     end
 
     def create_diff_storage(args={})
-      ensure_hash(args)
-      args[:target] = args[:target].ref if args.has_key?(:target) & args[:target].respond_to?(:ref)
+      ensure_hash args
+      args.referize! :target
       progress = VBox::WebService.send_request(:i_medium_create_diff_storage, _this.merge(args))
       VBox::Progress.new(progress)
     end
@@ -152,17 +151,17 @@ module VBox
     end
 
     def get_properties(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_medium_get_properties, _this.merge(args))
     end
 
     def get_property(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_medium_get_property, _this.merge(args))
     end
 
     def get_snapshot_ids(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_medium_get_snapshot_ids, _this.merge(args))
     end
 
@@ -175,8 +174,8 @@ module VBox
     end
 
     def merge_to(args={})
-      ensure_hash(args)
-      args[:target] = args[:target].ref if args.has_key?(:target) & args[:target].respond_to?(:ref)
+      ensure_hash args
+      args.referize! :target
       progress = VBox::WebService.send_request(:i_medium_delete_storage, _this.merge(args))
       VBox::Progress.new(progress)
     end
@@ -191,23 +190,23 @@ module VBox
     end
 
     def resize(args={})
-      ensure_hash(args)
+      ensure_hash args
       progress = VBox::WebService.send_request(:i_medium_resize, _this.merge(args))
       VBox::Progress.new(progress)
     end
 
     def set_ids(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_medium_set_ids, _this.merge(args))
     end
 
     def set_properties(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_medium_set_properties, _this.merge(args))
     end
 
     def set_property(args={})
-      ensure_hash(args)
+      ensure_hash args
       VBox::WebService.send_request(:i_medium_set_property, _this.merge(args))
     end
 
