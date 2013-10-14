@@ -1,8 +1,6 @@
 module VBox
   class USBDeviceFilter < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def name

@@ -1,8 +1,6 @@
 module VBox
   class Keyboard < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def event_source

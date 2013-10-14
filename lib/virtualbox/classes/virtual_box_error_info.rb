@@ -1,8 +1,6 @@
 module VBox
   class VirtualBoxErrorInfo < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def result_code

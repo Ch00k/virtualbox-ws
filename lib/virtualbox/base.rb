@@ -3,9 +3,10 @@ require_rel '/../core_ext/string.rb'
 
 module VBox
 
-  attr_reader :ref
-
   class Base
+
+    attr_reader :ref
+
     def initialize(obj_ref)
       @ref = obj_ref
     end

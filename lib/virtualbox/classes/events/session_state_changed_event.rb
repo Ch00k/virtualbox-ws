@@ -1,8 +1,6 @@
 module VBox
   class SessionStateChangedEvent < MachineEvent
 
-    attr_reader :ref
-
     # Attributes
 
     def state

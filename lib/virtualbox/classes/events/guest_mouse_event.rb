@@ -1,8 +1,6 @@
 module VBox
   class GuestMouseEvent < ReusableEvent
 
-    attr_reader :ref
-
     # Attributes
 
     def absolute

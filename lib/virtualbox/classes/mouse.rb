@@ -1,8 +1,6 @@
 module VBox
   class Mouse < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def absolute_supported

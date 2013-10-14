@@ -1,8 +1,6 @@
 module VBox
   class ShowWindowEvent < MachineEvent
 
-    attr_reader :ref
-
     # Attributes
 
     def win_id

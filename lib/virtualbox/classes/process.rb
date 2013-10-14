@@ -1,8 +1,6 @@
 module VBox
   class Process < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def pid

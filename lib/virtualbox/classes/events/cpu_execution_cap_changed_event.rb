@@ -1,8 +1,6 @@
 module VBox
   class CPUExecutionCapChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def execution_cap

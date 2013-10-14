@@ -1,8 +1,6 @@
 module VBox
   class DragAndDropModeChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def drag_and_drop_mode

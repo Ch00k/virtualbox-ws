@@ -1,8 +1,6 @@
 module VBox
   class AudioAdapter < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def enabled

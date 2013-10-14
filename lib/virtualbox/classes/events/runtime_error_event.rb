@@ -1,8 +1,6 @@
 module VBox
   class RuntimeErrorEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def fatal

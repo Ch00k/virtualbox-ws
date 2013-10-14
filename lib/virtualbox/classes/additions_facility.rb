@@ -1,8 +1,6 @@
 module VBox
   class AdditionsFacility < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def class_type

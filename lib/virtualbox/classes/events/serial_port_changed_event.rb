@@ -1,8 +1,6 @@
 module VBox
   class SerialPortChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def serial_port

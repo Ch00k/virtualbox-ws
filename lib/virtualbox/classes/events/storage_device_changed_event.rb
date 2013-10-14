@@ -1,8 +1,6 @@
 module VBox
   class StorageDeviceChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def storage_device

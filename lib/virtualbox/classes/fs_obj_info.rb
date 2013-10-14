@@ -1,8 +1,6 @@
 module VBox
   class FsObjInfo < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def access_time

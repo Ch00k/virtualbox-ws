@@ -1,8 +1,6 @@
 module VBox
   class HostUSBDevice < USBDevice
 
-    attr_reader :ref
-
     # Attributes
 
     def state

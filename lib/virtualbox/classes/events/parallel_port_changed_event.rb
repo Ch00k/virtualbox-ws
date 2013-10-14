@@ -1,8 +1,6 @@
 module VBox
   class ParallelPortChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def parallel_port

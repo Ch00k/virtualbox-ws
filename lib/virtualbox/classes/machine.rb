@@ -1,8 +1,6 @@
 module VBox
   class Machine < Base
 
-    attr_reader :ref
-
     # Attributes
     
     def parent

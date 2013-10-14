@@ -1,8 +1,6 @@
 module VBox
   class HostUSBDeviceFilter < USBDeviceFilter
 
-    attr_reader :ref
-
     # Attributes
 
     def action

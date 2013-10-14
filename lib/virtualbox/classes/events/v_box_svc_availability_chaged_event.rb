@@ -1,8 +1,6 @@
 module VBox
   class VBoxSVCAvailabilityChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def available

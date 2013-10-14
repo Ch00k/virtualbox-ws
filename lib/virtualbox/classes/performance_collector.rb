@@ -1,8 +1,6 @@
 module VBox
   class PerformanceCollector < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def metric_names

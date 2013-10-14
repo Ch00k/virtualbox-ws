@@ -1,8 +1,6 @@
 module VBox
   class MediumRegisteredEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def medium_id

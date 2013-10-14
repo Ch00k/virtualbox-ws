@@ -1,8 +1,6 @@
 module VBox
   class EventSource < Base
 
-    attr_reader :ref
-
     # Methods
 
     def create_aggregator(args={})

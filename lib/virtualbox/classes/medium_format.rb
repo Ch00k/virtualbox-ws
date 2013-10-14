@@ -1,8 +1,6 @@
 module VBox
   class MediumFormat < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def id

@@ -1,8 +1,6 @@
 module VBox
   class SerialPort < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def slot

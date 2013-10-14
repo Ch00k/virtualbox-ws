@@ -1,8 +1,6 @@
 module VBox
   class BandwidthGroup < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def name

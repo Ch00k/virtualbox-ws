@@ -1,8 +1,6 @@
 module VBox
   class StateChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def state

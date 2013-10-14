@@ -1,8 +1,6 @@
 module VBox
   class ParallelPort < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def slot

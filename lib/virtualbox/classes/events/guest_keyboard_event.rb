@@ -1,8 +1,6 @@
 module VBox
   class GuestKeyboardEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def scancodes

@@ -1,8 +1,6 @@
 module VBox
   class CPUChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def cpu

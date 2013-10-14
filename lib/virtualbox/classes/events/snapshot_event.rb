@@ -1,8 +1,6 @@
 module VBox
   class SnapshotEvent < MachineEvent
 
-    attr_reader :ref
-
     # Attributes
 
     def snapshot_id

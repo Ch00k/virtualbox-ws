@@ -1,8 +1,6 @@
 module VBox
   class KeyboardLedsChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def num_lock

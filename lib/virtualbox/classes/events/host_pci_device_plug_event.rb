@@ -1,8 +1,6 @@
 module VBox
   class HostPCIDevicePlugEvent < MachineEvent
 
-    attr_reader :ref
-
     # Attributes
 
     def plugged

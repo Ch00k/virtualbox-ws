@@ -1,8 +1,6 @@
 module VBox
   class File < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def creation_mode

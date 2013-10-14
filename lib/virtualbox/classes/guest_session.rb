@@ -1,8 +1,6 @@
 module VBox
   class GuestSession < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def user

@@ -1,8 +1,6 @@
 module VBox
   class VirtualSystemDescription < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def count

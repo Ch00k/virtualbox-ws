@@ -1,8 +1,6 @@
 module VBox
   class SharedFolderChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def scope

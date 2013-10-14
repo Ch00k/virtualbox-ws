@@ -1,8 +1,6 @@
 module VBox
   class HostNetworkInterface < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def name

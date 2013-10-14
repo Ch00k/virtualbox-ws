@@ -1,8 +1,6 @@
 module VBox
   class Console < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def machine

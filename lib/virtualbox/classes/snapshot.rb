@@ -1,8 +1,6 @@
 module VBox
   class Snapshot < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def id

@@ -1,8 +1,6 @@
 module VBox
   class Host < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def dvd_drives

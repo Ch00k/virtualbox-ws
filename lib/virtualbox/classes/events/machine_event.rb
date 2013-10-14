@@ -1,8 +1,6 @@
 module VBox
   class MachineEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def machine_id

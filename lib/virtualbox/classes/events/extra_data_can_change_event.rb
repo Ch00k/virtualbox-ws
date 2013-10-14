@@ -1,8 +1,6 @@
 module VBox
   class ExtraDataCanChangeEvent < VetoEvent
 
-    attr_reader :ref
-
     # Attributes
 
     def machine_id

@@ -1,8 +1,6 @@
 module VBox
   class StorageController < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def name

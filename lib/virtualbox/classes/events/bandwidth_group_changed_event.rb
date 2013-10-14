@@ -1,8 +1,6 @@
 module VBox
   class BandwidthGroupChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def bandwidth_group

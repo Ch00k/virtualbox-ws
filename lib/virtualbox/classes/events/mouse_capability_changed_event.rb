@@ -1,8 +1,6 @@
 module VBox
   class MouseCapabilityChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def supports_absolute

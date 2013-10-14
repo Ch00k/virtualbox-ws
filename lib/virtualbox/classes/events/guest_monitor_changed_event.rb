@@ -1,8 +1,6 @@
 module VBox
   class GuestMonitorChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def change_type

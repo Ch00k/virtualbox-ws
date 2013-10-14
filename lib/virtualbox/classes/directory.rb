@@ -1,8 +1,6 @@
 module VBox
   class Directory < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def directory_name

@@ -1,8 +1,6 @@
 module VBox
   class Display < Base
 
-    attr_reader :ref
-
     # Methods
 
     def get_screen_resolution(args={})

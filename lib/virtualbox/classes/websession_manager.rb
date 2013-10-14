@@ -1,8 +1,6 @@
 module VBox
   class WebsessionManager < Base
 
-    attr_reader :ref
-
     def initialize(obj_ref=nil)
       super
     end
@@ -12,6 +10,8 @@ module VBox
       _this[:ref_i_virtual_box] = @ref
       _this
     end
+
+    # Methods
 
     def logon(args={})
       ensure_hash(args)

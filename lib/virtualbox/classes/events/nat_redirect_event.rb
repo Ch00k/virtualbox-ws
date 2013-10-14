@@ -1,8 +1,6 @@
 module VBox
   class NATRedirectEvent < MachineEvent
 
-    attr_reader :ref
-
     # Attributes
 
     def slot

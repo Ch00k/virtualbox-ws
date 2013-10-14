@@ -1,8 +1,6 @@
 module VBox
   class ClipboardModeChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def clipboard_mode

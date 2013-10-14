@@ -1,8 +1,6 @@
 module VBox
   class Guest < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def os_type_id

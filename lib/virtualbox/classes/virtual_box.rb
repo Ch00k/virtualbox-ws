@@ -1,8 +1,6 @@
 module VBox
   class VirtualBox < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def version

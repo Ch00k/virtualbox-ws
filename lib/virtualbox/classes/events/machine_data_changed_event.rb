@@ -1,8 +1,6 @@
 module VBox
   class MachineDataChangedEvent < MachineEvent
 
-    attr_reader :ref
-
     # Attributes
 
     def temporary

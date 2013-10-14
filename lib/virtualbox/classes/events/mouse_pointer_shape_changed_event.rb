@@ -1,8 +1,6 @@
 module VBox
   class MousePointerShapeChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def visible

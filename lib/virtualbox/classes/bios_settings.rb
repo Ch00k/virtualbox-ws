@@ -1,8 +1,6 @@
 module VBox
   class BIOSSettings < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def logo_fade_in

@@ -1,8 +1,6 @@
 module VBox
   class USBDevice < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def id

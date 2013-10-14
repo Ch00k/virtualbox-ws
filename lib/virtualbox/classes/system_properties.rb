@@ -1,8 +1,6 @@
 module VBox
   class SystemProperties < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def min_guest_ram

@@ -1,8 +1,6 @@
 module VBox
   class Session < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def state

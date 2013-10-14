@@ -1,8 +1,6 @@
 module VBox
   class NetworkAdapter < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def adapter_type

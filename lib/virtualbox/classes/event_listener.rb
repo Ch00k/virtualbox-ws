@@ -1,8 +1,6 @@
 module VBox
   class EventListener < Base
 
-    attr_reader :ref
-
     # Methods
 
     def handle_event(args={})

@@ -1,8 +1,6 @@
 module VBox
   class EventSourceChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def listener

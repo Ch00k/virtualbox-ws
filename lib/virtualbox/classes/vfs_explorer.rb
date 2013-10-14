@@ -1,8 +1,6 @@
 module VBox
   class VFSExplorer < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def path

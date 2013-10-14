@@ -1,8 +1,6 @@
 module VBox
   class MediumChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def medium_attachment

@@ -1,8 +1,6 @@
 module VBox
   class NetworkAdapterChangedEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def network_adapter

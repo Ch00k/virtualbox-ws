@@ -1,8 +1,6 @@
 module VBox
   class VetoEvent < Event
 
-    attr_reader :ref
-
     # Methods
 
     def add_veto(args={})

@@ -1,8 +1,6 @@
 module VBox
   class VRDEServerInfo < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def active

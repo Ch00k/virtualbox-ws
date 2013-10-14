@@ -1,8 +1,6 @@
 module VBox
   class NATEngine < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def network

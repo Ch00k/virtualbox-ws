@@ -1,8 +1,6 @@
 module VBox
   class ReusableEvent < Event
 
-    attr_reader :ref
-
     # Attributes
 
     def generation

@@ -1,8 +1,6 @@
 module VBox
   class DHCPServer < Base
 
-    attr_reader :ref
-
     # Attributes
 
     def enabled
