@@ -1,4 +1,4 @@
 module VBox
-  class VRDEServerServerChangedEvent < Event
+  class VRDEServerChangedEvent < Event
   end
 end
