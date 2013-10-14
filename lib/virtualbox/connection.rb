@@ -49,7 +49,7 @@ module VBox
 
       private
       def parse_response(response)
-        puts "DUBUG --- RESPONSE: #{response.body}" if @debug
+        puts "DEBUG --- RESPONSE: #{response.body}" if @debug
         response_struct = response.body[response.body.keys[0]]
         if response_struct.nil?
           nil
