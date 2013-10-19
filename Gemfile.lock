@@ -1,3 +1,10 @@
+PATH
+  remote: .
+  specs:
+    virtualbox-ws (0.0.3)
+      require_all
+      savon
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -31,5 +38,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  require_all
-  savon
+  virtualbox-ws!
