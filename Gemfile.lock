@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    virtualbox-ws (0.0.3)
+    virtualbox-ws (0.0.4)
       require_all
       savon
 

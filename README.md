@@ -7,6 +7,8 @@ This library's interface basically resembles the COM interface provided by Virtu
 `add_storage_controller`
 3. Interfaces and methods that are marked as not supported in the webservice in VirtualBox SDK Reference are not
 supported here
+4. WebsessionManager class is used to both connect to VirtualBox SOAP web service and to authenticate on it
+
 
 Documentation
 -------------
@@ -14,46 +16,60 @@ Documentation
 The main source of documentation is the [VirtualBox SDK Reference](http://download.virtualbox.org/virtualbox/SDKRef.pdf)
 
 
+Installation
+-------
+
+```
+gem install virtualbox-ws
+```
+
+
+Configuration
+-------------
+
+You can override any of these configuration defaults:
+
+```
+VBox::WebService.configure do |config|
+  config.vboxweb_host = ENV['VBOXWEB_HOST'] || '127.0.0.1'
+  config.vboxweb_port = ENV['VBOXWEB_PORT'] || '18083'
+  config.vboxweb_user = ENV['VBOXWEB_USER']
+  config.vboxweb_pass = ENV['VBOXWEB_PASS']
+  config.log_level = 'ERROR'
+end
+```
+
+`config.log_level` can be one of `ERROR`, `INFO`, `DEBUG`
+
+
 Usage
 -----
 
 Require the gem
+
 ```
 irb> require 'virtualbox-ws'
  => true 
 ```
 
-First connect to vboxwebsrv service
-```
-irb> VBox::WebService.connect
- => true
-```
+An instance of VBox::WebsessionManager connects to VirtualBox SOAP wen service
 
-By default it connects to `http://127.0.0.1:18083` but host and port parameters can be passed to the connect method
-explicitly
-```
-irb> VBox::WebService.connect(:host => 'localhost', :port => '18083')
- => true
-```
-
-To enable debug logging for SOAP operations a debug flag can be set for connection
-```
-irb > VBox::WebService.connect(:debug => true)
-D, [2013-10-08T18:52:22.839743 #18132] DEBUG -- : HTTPI GET request to localhost (net_http)
- => true 
-```
-To do anything useful on a VirtualBox installation you first have to create an instance of the VirtualBox class which
-according to VirtualBox SDK Reference is "the main interface exposed by the product that provides virtual machine
-management". VirtualBox instance is created upon logging on to the SOAP web service
 ```
 irb> web_session = VBox::WebsessionManager.new
- => #<VBox::WebsessionManager:0x00000005deb4a8 @ref=nil> 
-irb> virtual_box = web_session.logon(:username => 'user', :password => 'password')
- => #<VBox::VirtualBox:0x000000062bc8d8 @ref="47efe040fcc25df7-000000000000001d"> 
+ => #<VBox::WebsessionManager:0x00000005deb4a8 @ref=nil>
+```
 
+The logon method will authenticate you on the web service and create an instance of the VirtualBox class
+which according to VirtualBox SDK Reference is "the main interface exposed by the product that provides virtual machine
+management".
+
+```
+irb> virtual_box = web_session.logon
+ => #<VBox::VirtualBox:0x000000062bc8d8 @ref="47efe040fcc25df7-000000000000001d"> 
 ```
 
 Having a VirtualBox instance we can query various VirtualBox installation info as well as create virtual machines...
+
 ```
 irb> virtual_box.version
  => "4.2.18" 
@@ -68,6 +84,7 @@ irb> virtual_box.register_machine(:machine => machine)
 ```
 
 ...and run virtual machines
+
 ```
 irb> machine.launch_vm_process(:session => web_session.get_session_object, :type => 'headless')
  => #<VBox::Progress:0x00000005934040 @ref="47efe040fcc25df7-000000000000001f"> 

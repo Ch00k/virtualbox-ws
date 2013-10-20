@@ -4,21 +4,21 @@ require 'savon'
 module VBox
   module WebService
     class << self
-      def connect(args={})
-        host = args[:host] || '127.0.0.1'
-        port = args[:port] || '18083'
-        debug = args[:debug] || false
-        savon_debug = args[:savon_debug] || false
+      def connect
+        self.configuration ||= Configuration.new
+        host = configuration.vboxweb_host
+        port = configuration.vboxweb_port
+        log_level = configuration.log_level
+        @debug = log_level == 'INFO' || log_level == 'DEBUG' ? true : false
+        savon_debug = log_level == 'DEBUG' ? true : false
+
         endpoint = "http://#{host}:#{port}"
         wsdl = endpoint + '/?wsdl'
+
         @conn = Savon.client(:wsdl => wsdl, :endpoint => endpoint, :log => savon_debug, :pretty_print_xml => savon_debug)
-        if @conn.operations.include?(:i_websession_manager_logon)
-          @debug = debug
-          @savon_debug = savon_debug
-          true
-        else
-          raise "Could not connect to VirtualBox SOAP Web Service at #{endpoint} (No VirtualBox SOAP service found)"
-        end
+
+        raise "Could not connect to VirtualBox SOAP Web Service at #{endpoint} (No VirtualBox SOAP service found)" unless
+            @conn.operations.include?(:i_websession_manager_logon)
       rescue Errno::ECONNREFUSED
         raise "Could not connect to VirtualBox SOAP Web Service at #{endpoint} (Connection refused)"
       end
@@ -27,24 +27,6 @@ module VBox
         puts "DEBUG --- REQUEST:  #{soap_method}, #{soap_message}" if @debug
         response = @conn.call(soap_method, :message => soap_message)
         parse_response(response)
-      end
-
-      def debug
-        @debug
-      end
-
-      def debug=(debug)
-        @debug = debug
-      end
-
-      def savon_debug
-        @debug
-      end
-
-      def savon_debug=(savon_debug)
-        @savon_debug = savon_debug
-        @conn.globals[:log] = savon_debug
-        @conn.globals[:pretty_print_xml] = savon_debug
       end
 
       private

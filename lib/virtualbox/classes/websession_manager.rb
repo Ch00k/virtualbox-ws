@@ -1,8 +1,9 @@
 module VBox
   class WebsessionManager < Base
 
-    def initialize(obj_ref=nil)
-      super
+    def initialize
+      WebService.connect
+      @ref = nil
     end
 
     def _this
@@ -13,21 +14,22 @@ module VBox
 
     # Methods
 
-    def logon(args={})
-      ensure_hash args
+    def logon
+      args = Hash[:username => WebService.configuration.vboxweb_user,
+                  :password => WebService.configuration.vboxweb_pass]
       key = VBox::WebService.send_request(:i_websession_manager_logon, args)
       @ref = key
-      VBox::VirtualBox.new(key)
+      VirtualBox.new(key)
     end
 
     def logoff
-      VBox::WebService.send_request(:i_websession_manager_logoff, _this)
+      WebService.send_request(:i_websession_manager_logoff, _this)
       @ref = nil
     end
 
     def get_session_object
-      session = VBox::WebService.send_request(:i_websession_manager_get_session_object, _this)
-      VBox::Session.new(session)
+      session = WebService.send_request(:i_websession_manager_get_session_object, _this)
+      Session.new(session)
     end
   end
 end
