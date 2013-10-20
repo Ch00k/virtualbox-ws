@@ -14,11 +14,11 @@ module VBox
     end
 
     def vbox_class
-      VBox::ManagedObjectRef.new(@ref).get_interface_name
+      ManagedObjectRef.new(@ref).get_interface_name
     end
 
     def delete!
-      VBox::ManagedObjectRef.new(@ref).release
+      ManagedObjectRef.new(@ref).release
     end
 
     def ensure_hash(args)

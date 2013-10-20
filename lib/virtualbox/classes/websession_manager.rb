@@ -17,7 +17,7 @@ module VBox
     def logon
       args = Hash[:username => WebService.configuration.vboxweb_user,
                   :password => WebService.configuration.vboxweb_pass]
-      key = VBox::WebService.send_request(:i_websession_manager_logon, args)
+      key = WebService.send_request(:i_websession_manager_logon, args)
       @ref = key
       VirtualBox.new(key)
     end
