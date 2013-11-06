@@ -1,6 +1,8 @@
 module VBox
   class NATNetwork < Base
 
+    starts_with_acronym
+
     vb_attr :network_name
     vb_attr :enabled
     vb_attr :network

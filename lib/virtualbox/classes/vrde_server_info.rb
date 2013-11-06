@@ -1,6 +1,8 @@
 module VBox
   class VRDEServerInfo < Base
 
+    starts_with_acronym
+
     vb_attr :active
     vb_attr :port
     vb_attr :number_of_clients

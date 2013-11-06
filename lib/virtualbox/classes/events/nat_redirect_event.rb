@@ -1,6 +1,8 @@
 module VBox
   class NATRedirectEvent < MachineEvent
 
+    starts_with_acronym
+
     vb_attr :slot
     vb_attr :remove
     vb_attr :name

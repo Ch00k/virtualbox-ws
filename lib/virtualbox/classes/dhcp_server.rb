@@ -1,6 +1,8 @@
 module VBox
   class DHCPServer < Base
 
+    starts_with_acronym
+
     vb_attr :event_source
     vb_attr :enabled
     vb_attr :ip_address
