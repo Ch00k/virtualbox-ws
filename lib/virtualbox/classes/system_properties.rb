@@ -1,207 +1,44 @@
 module VBox
   class SystemProperties < Base
 
-    # Attributes
+    vb_attr :min_guest_ram
+    vb_attr :max_guest_ram
+    vb_attr :min_guest_vram
+    vb_attr :max_guest_vram
+    vb_attr :min_guest_cpu_count
+    vb_attr :max_guest_cpu_count
+    vb_attr :max_guest_monitors
+    vb_attr :info_vd_size
+    vb_attr :serial_port_count
+    vb_attr :parallel_port_count
+    vb_attr :max_boot_position
+    vb_attr :exclusive_hw_virt
+    vb_attr :default_machine_folder
+    vb_attr :logging_level
+    vb_attr :medium_formats, :force_array => true
+    vb_attr :default_hard_disk_format
+    vb_attr :free_disk_space_warning
+    vb_attr :free_disk_space_percent_warning
+    vb_attr :free_disk_space_error
+    vb_attr :free_disk_space_percent_error
+    vb_attr :vrde_aurh_library, :force_tag => 'VRDEAuthLibrary'
+    vb_attr :web_service_auth_library
+    vb_attr :default_vrde_ext_pack
+    vb_attr :log_history_count
+    vb_attr :default_audio_driver
+    vb_attr :autostart_database_path
+    vb_attr :default_additions_iso
+    vb_attr :default_frontend
 
-    def min_guest_ram
-      WebService.send_request(:i_system_properties_get_min_guest_ram, _this)
-    end
+    vb_method :get_default_io_cache_setting_for_storage_controller
+    vb_method :get_device_types_for_storage_bus, :force_array => true
+    vb_method :get_max_devices_per_port_for_storage_bus
+    vb_method :get_max_instances_of_storage_bus
+    vb_method :get_max_instances_of_usb_controller_type
+    vb_method :get_max_network_adapters
+    vb_method :get_max_network_adapters_of_type
+    vb_method :get_max_port_count_for_storage_bus
+    vb_method :get_min_port_count_for_storage_bus
 
-    def max_guest_ram
-      WebService.send_request(:i_system_properties_get_max_guest_ram, _this)
-    end
-
-    def min_guest_vram
-      WebService.send_request(:i_system_properties_get_min_guest_vram, _this)
-    end
-
-    def max_guest_vram
-      WebService.send_request(:i_system_properties_get_max_guest_vram, _this)
-    end
-
-    def min_guest_cpu_count
-      WebService.send_request(:i_system_properties_get_min_guest_cpu_count, _this)
-    end
-
-    def max_guest_cpu_count
-      WebService.send_request(:i_system_properties_get_max_guest_cpu_count, _this)
-    end
-
-    def max_guest_monitors
-      WebService.send_request(:i_system_properties_get_max_guest_monitors, _this)
-    end
-
-    def info_vd_size
-      WebService.send_request(:i_system_properties_get_info_vd_size, _this)
-    end
-
-    def serial_port_count
-      WebService.send_request(:i_system_properties_get_serial_port_count, _this)
-    end
-
-    def parallel_port_count
-      WebService.send_request(:i_system_properties_get_parallel_port_count, _this)
-    end
-
-    def max_boot_position
-      WebService.send_request(:i_system_properties_get_max_boot_position, _this)
-    end
-
-    def default_machine_folder
-      WebService.send_request(:i_system_properties_get_default_machine_folder, _this)
-    end
-
-    def default_machine_folder=(default_machine_folder)
-      WebService.send_request(:i_system_properties_set_default_machine_folder,
-                                    _this.merge(:default_machine_folder => default_machine_folder))
-    end
-
-    def medium_formats
-      medium_formats = WebService.send_request(:i_system_properties_get_medium_formats, _this)
-      medium_formats.to_a.map do |medium_format|
-        MediumFormat.new(medium_format)
-      end
-    end
-
-    def default_hard_disk_format
-      WebService.send_request(:i_system_properties_get_default_hard_disk_format, _this)
-    end
-
-    def default_hard_disk_format=(default_hard_disk_format)
-      WebService.send_request(:i_system_properties_set_default_hard_disk_format,
-                                    _this.merge(:default_hard_disk_format => default_hard_disk_format))
-    end
-
-    def free_disk_space_warning
-      WebService.send_request(:i_system_properties_get_free_disk_space_warning, _this)
-    end
-
-    def free_disk_space_warning=(free_disk_space_warning)
-      WebService.send_request(:i_system_properties_set_free_disk_space_warning,
-                                    _this.merge(:free_disk_space_warning => free_disk_space_warning))
-    end
-
-    def free_disk_space_percent_warning
-      WebService.send_request(:i_system_properties_get_free_disk_space_percent_warning, _this)
-    end
-
-    def free_disk_space_percent_warning=(free_disk_space_percent_warning)
-      WebService.send_request(:i_system_properties_set_free_disk_space_percent_warning,
-                                    _this.merge(:free_disk_space_percent_warning => free_disk_space_percent_warning))
-    end
-
-    def free_disk_space_error
-      WebService.send_request(:i_system_properties_get_free_disk_space_error, _this)
-    end
-
-    def free_disk_space_error=(free_disk_space_error)
-      WebService.send_request(:i_system_properties_set_free_disk_space_error,
-                                    _this.merge(:free_disk_space_error => free_disk_space_error))
-    end
-
-    def free_disk_space_percent_error
-      WebService.send_request(:i_system_properties_get_free_disk_space_percent_error, _this)
-    end
-
-    def free_disk_space_percent_error=(free_disk_space_percent_error)
-      WebService.send_request(:i_system_properties_set_free_disk_space_percent_error,
-                                    _this.merge(:free_disk_space_percent_error => free_disk_space_percent_error))
-    end
-
-    def vrde_auth_library
-      WebService.send_request(:i_system_properties_get_vrde_auth_library, _this)
-    end
-
-    def vrde_auth_library=(vrde_auth_library)
-      WebService.send_request(:i_system_properties_set_vrde_auth_library,
-                                    _this.merge('VRDEAuthLibrary' => vrde_auth_library))
-    end
-
-    def web_service_auth_library
-      WebService.send_request(:i_system_properties_get_web_service_auth_library, _this)
-    end
-
-    def web_service_auth_library=(web_service_auth_library)
-      WebService.send_request(:i_system_properties_set_web_service_auth_library,
-                                    _this.merge(:web_service_auth_library => web_service_auth_library))
-    end
-
-    def default_vrde_ext_pack
-      WebService.send_request(:i_system_properties_get_default_vrde_ext_pack, _this)
-    end
-
-    def default_vrde_ext_pack=(default_vrde_ext_pack)
-      WebService.send_request(:i_system_properties_set_default_vrde_ext_pack,
-                                    _this.merge(:default_vrde_ext_pack => default_vrde_ext_pack))
-    end
-
-    def log_history_count
-      WebService.send_request(:i_system_properties_get_log_history_count, _this)
-    end
-
-    def log_history_count=(log_history_count)
-      WebService.send_request(:i_system_properties_set_log_history_count,
-                                    _this.merge(:log_history_count => log_history_count))
-    end
-
-    def default_audio_driver
-      WebService.send_request(:i_system_properties_get_default_audio_driver, _this)
-    end
-
-    def auto_start_database_path
-      WebService.send_request(:i_system_properties_get_auto_start_database_path, _this)
-    end
-
-    def auto_start_database_path=(auto_start_database_path)
-      WebService.send_request(:i_system_properties_set_auto_start_database_path,
-                                    _this.merge(:auto_start_database_path => auto_start_database_path))
-    end
-
-    def default_additions_iso
-      WebService.send_request(:i_system_properties_get_default_additions_iso, _this)
-    end
-
-    def default_additions_iso=(default_additions_iso)
-      WebService.send_request(:i_system_properties_set_default_additions_iso,
-                                    _this.merge(:default_additions_iso => default_additions_iso))
-    end
-
-    # Methods
-
-    def get_default_io_cache_setting_for_storage_controller(args={})
-      ensure_hash args
-      WebService.send_request(:i_system_properties_get_default_io_cache_setting_for_storage_controller,
-                                    _this.merge(args))
-    end
-
-    def get_device_types_for_storage_bus(args={})
-      ensure_hash args
-      WebService.send_request(:i_system_properties_get_device_types_for_storage_bus, _this.merge(args))
-    end
-
-    def get_max_instances_of_storage_bus(args={})
-      ensure_hash args
-      WebService.send_request(:i_system_properties_get_max_instances_of_storage_bus, _this.merge(args))
-    end
-
-    def get_max_network_adapters(args={})
-      ensure_hash args
-      WebService.send_request(:i_system_properties_get_max_network_adapters, _this.merge(args))
-    end
-
-    def get_max_network_adapters_of_type(args={})
-      ensure_hash args
-      WebService.send_request(:i_system_properties_get_max_network_adapters_of_type, _this.merge(args))
-    end
-
-    def get_max_port_count_for_storage_bus(args={})
-      ensure_hash args
-      WebService.send_request(:i_system_properties_get_max_port_count_for_storage_bus, _this.merge(args))
-    end
-
-    def get_min_port_count_for_storage_bus(args={})
-      ensure_hash args
-      WebService.send_request(:i_system_properties_get_min_port_count_for_storage_bus, _this.merge(args))
-    end
   end
 end

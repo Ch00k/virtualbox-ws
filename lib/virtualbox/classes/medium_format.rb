@@ -1,28 +1,12 @@
 module VBox
   class MediumFormat < Base
 
-    # Attributes
+    vb_attr :id
+    vb_attr :name
+    vb_attr :capabilities, :force_array => true
 
-    def id
-      WebService.send_request(:i_medium_format_get_id, _this)
-    end
+    vb_method :describe_file_extensions
+    vb_method :describe_properties
 
-    def name
-      WebService.send_request(:i_medium_format_get_name, _this)
-    end
-
-    def capabilities
-      WebService.send_request(:i_medium_format_get_name, _this)
-    end
-
-    # Methods
-
-    def describe_file_extensions
-      WebService.send_request(:i_medium_format_describe_file_extensions, _this)
-    end
-
-    def describe_properties
-      WebService.send_request(:i_medium_format_describe_properties, _this)
-    end
   end
 end

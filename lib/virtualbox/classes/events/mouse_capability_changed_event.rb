@@ -1,18 +1,10 @@
 module VBox
   class MouseCapabilityChangedEvent < Event
 
-    # Attributes
+    vb_attr :supports_absolute
+    vb_attr :supports_relative
+    vb_attr :supports_multi_touch
+    vb_attr :needs_host_cursor
 
-    def supports_absolute
-      WebService.send_request(:i_mouse_capability_changed_event_supports_absolute, _this)
-    end
-
-    def supports_relative
-      WebService.send_request(:i_mouse_capability_changed_event_supports_relative, _this)
-    end
-
-    def needs_host_cursor
-      WebService.send_request(:i_mouse_capability_changed_event_needs_host_cursor, _this)
-    end
   end
 end

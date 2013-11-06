@@ -1,35 +1,16 @@
 module VBox
   class Mouse < Base
 
-    # Attributes
+    vb_attr :absolute_supported
+    vb_attr :relative_supported
+    vb_attr :multi_touch_supported
+    vb_attr :needs_host_cursor
+    vb_attr :event_source
 
-    def absolute_supported
-      WebService.send_request(:i_mouse_get_absolute_supported, _this)
-    end
+    vb_method :put_event_multi_touch
+    vb_method :put_event_multi_touch_string
+    vb_method :put_mouse_event
+    vb_method :put_mouse_event_absolute
 
-    def relative_supported
-      WebService.send_request(:i_mouse_get_relative_supported, _this)
-    end
-
-    def needs_host_cursor
-      WebService.send_request(:i_mouse_get_needs_host_cursor, _this)
-    end
-
-    def event_source
-      event_source = WebService.send_request(:i_mouse_get_event_source, _this)
-      EventSource.new(event_source)
-    end
-
-    # Methods
-
-    def put_mouse_event(args={})
-      ensure_hash args
-      WebService.send_request(:i_mouse_put_mouse_event, _this)
-    end
-
-    def put_mouse_event_absolute(args={})
-      ensure_hash args
-      WebService.send_request(:i_mouse_put_mouse_event_absolute, _this)
-    end
   end
 end

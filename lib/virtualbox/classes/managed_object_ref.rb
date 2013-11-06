@@ -1,15 +1,8 @@
 module VBox
   class ManagedObjectRef < Base
 
-    # Methods
+    vb_method :get_interface_name
+    vb_method :release
 
-    def get_interface_name
-      interface_name = WebService.send_request(:i_managed_object_ref_get_interface_name, _this)
-      interface_name[1..-1]
-    end
-
-    def release
-      WebService.send_request(:i_managed_object_ref_release, _this)
-    end
   end
 end

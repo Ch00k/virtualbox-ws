@@ -1,16 +1,9 @@
 module VBox
   class ReusableEvent < Event
 
-    # Attributes
+    vb_attr :generation
 
-    def generation
-      WebService.send_request(:i_reusable_event_get_generation, _this)
-    end
+    vb_method :reuse
 
-    # Methods
-
-    def reuse
-      WebService.send_request(:i_reusable_event_reuse, _this)
-    end
   end
 end

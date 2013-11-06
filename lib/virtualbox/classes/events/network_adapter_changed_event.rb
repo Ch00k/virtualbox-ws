@@ -1,11 +1,7 @@
 module VBox
   class NetworkAdapterChangedEvent < Event
 
-    # Attributes
+    vb_attr :network_adapter
 
-    def network_adapter
-      network_adapter = WebService.send_request(:i_network_adapter_changed_event_get_network_adapter, _this)
-      NetworkAdapter.new(network_adapter)
-    end
   end
 end

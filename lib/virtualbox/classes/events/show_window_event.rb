@@ -1,10 +1,7 @@
 module VBox
   class ShowWindowEvent < MachineEvent
 
-    # Attributes
+    vb_attr :win_id
 
-    def win_id
-      WebService.send_request(:i_show_window_event_get_win_id, _this)
-    end
   end
 end

@@ -1,65 +1,21 @@
 module VBox
   class Process < Base
 
-    # Attributes
+    vb_attr :arguments, :force_array => true
+    vb_attr :environment, :force_array => true
+    vb_attr :event_source
+    vb_attr :executable_path
+    vb_attr :exit_code
+    vb_attr :name
+    vb_attr :pid
+    vb_attr :status
 
-    def pid
-      WebService.send_request(:i_process_get_pid, _this)
-    end
+    vb_method :read, :force_array => true
+    vb_method :terminate
+    vb_method :wait_for
+    vb_method :wait_for_array
+    vb_method :write
+    vb_method :write_array
 
-    def status
-      WebService.send_request(:i_process_get_status, _this)
-    end
-
-    def exit_code
-      WebService.send_request(:i_process_get_exit_code, _this)
-    end
-
-    def environment
-      WebService.send_request(:i_process_get_environment, _this)
-    end
-
-    def arguments
-      WebService.send_request(:i_process_get_arguments, _this)
-    end
-
-    def executable_path
-      WebService.send_request(:i_process_get_executable_path, _this)
-    end
-
-    def name
-      WebService.send_request(:i_process_get_name, _this)
-    end
-
-    # Methods
-
-    def read(args={})
-      ensure_hash args
-      WebService.send_request(:i_process_read, _this.merge(args))
-    end
-
-    def terminate
-      WebService.send_request(:i_process_terminate, _this)
-    end
-
-    def wait_for(args={})
-      ensure_hash args
-      WebService.send_request(:i_process_wait_for, _this.merge(args))
-    end
-
-    def wait_for_array(args={})
-      ensure_hash args
-      WebService.send_request(:i_process_wait_for_array, _this.merge(args))
-    end
-
-    def write(args={})
-      ensure_hash args
-      WebService.send_request(:i_process_write, _this.merge(args))
-    end
-
-    def write_array(args={})
-      ensure_hash args
-      WebService.send_request(:i_process_write_array, _this.merge(args))
-    end
   end
 end

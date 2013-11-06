@@ -1,3 +1,7 @@
 require 'require_all'
 require_rel 'core_ext'
-require_rel 'virtualbox'
+require_rel 'virtualbox/configuration'
+require_rel 'virtualbox/exceptions'
+require_rel 'virtualbox/webservice'
+require_rel 'virtualbox/base'
+require_rel 'virtualbox/classes/websession_manager'

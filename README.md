@@ -35,9 +35,10 @@ VBox::WebService.configure do |config|
   config.vboxweb_port = ENV['VBOXWEB_PORT'] || '18083'
   config.vboxweb_user = ENV['VBOXWEB_USER']
   config.vboxweb_pass = ENV['VBOXWEB_PASS']
-  config.log_level = 'ERROR'
+  config.log_level = ENV['VBOXWEB_LOGGING'] || 'ERROR'
 end
 ```
+Each of these configuration options can be set as environment variables.
 
 `config.log_level` can be one of `ERROR`, `INFO`, `DEBUG`
 
@@ -72,7 +73,7 @@ Having a VirtualBox instance we can query various VirtualBox installation info a
 
 ```
 irb> virtual_box.version
- => "4.2.18" 
+ => "4.3.0"
 irb> machine = virtual_box.create_machine(:name => 'machine_1')
  => #<VBox::Machine:0x00000005841f98 @ref="47efe040fcc25df7-000000000000001e"> 
 irb> virtual_box.register_machine(:machine => machine)
@@ -86,6 +87,6 @@ irb> virtual_box.register_machine(:machine => machine)
 ...and run virtual machines
 
 ```
-irb> machine.launch_vm_process(:session => web_session.get_session_object, :type => 'headless')
+irb> machine.launch_vm_process(:session => web_session.get_session_object)
  => #<VBox::Progress:0x00000005934040 @ref="47efe040fcc25df7-000000000000001f"> 
 ```

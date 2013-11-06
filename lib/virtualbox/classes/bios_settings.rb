@@ -1,79 +1,18 @@
 module VBox
   class BIOSSettings < Base
 
-    # Attributes
+    starts_with_acronym
 
-    def logo_fade_in
-      WebService.send_request(:ibios_settings_get_logo_fade_in, _this)
-    end
+    vb_attr :logo_fade_in
+    vb_attr :logo_fade_out
+    vb_attr :logo_display_time
+    vb_attr :logo_image_path
+    vb_attr :boot_menu_mode
+    vb_attr :acpi_enabled, :force_tag => 'ACPIEnabled'
+    vb_attr :ioapic_enabled, :force_tag => 'IOAPICEnabled'
+    vb_attr :time_offset
+    vb_attr :pxe_debug_enabled, :force_tag => 'PXEDebugEnabled'
+    vb_attr :non_volatile_storage_file
 
-    def logo_fade_in=(logo_fade_in)
-      WebService.send_request(:ibios_settings_set_logo_fade_in, _this.merge(:logo_fade_in => logo_fade_in))
-    end
-
-    def logo_fade_out
-      WebService.send_request(:ibios_settings_get_logo_fade_out, _this)
-    end
-
-    def logo_fade_out=(logo_fade_out)
-      WebService.send_request(:ibios_settings_set_logo_fade_out, _this.merge(:logo_fade_out => logo_fade_out))
-    end
-
-    def logo_display_time
-      WebService.send_request(:ibios_settings_get_logo_display_time, _this)
-    end
-
-    def logo_display_time=(logo_display_time)
-      WebService.send_request(:ibios_settings_set_logo_display_time,
-                                    _this.merge(:logo_display_time => logo_display_time))
-    end
-
-    def logo_image_path
-      WebService.send_request(:ibios_settings_get_logo_image_path, _this)
-    end
-
-    def logo_image_path=(logo_image_path)
-      WebService.send_request(:ibios_settings_set_logo_image_path, _this.merge(:logo_image_path => logo_image_path))
-    end
-
-    def boot_menu_mode
-      WebService.send_request(:ibios_settings_get_boot_menu_mode, _this)
-    end
-
-    def boot_menu_mode=(boot_menu_mode)
-      WebService.send_request(:ibios_settings_set_boot_menu_mode, _this.merge(:boot_menu_mode => boot_menu_mode))
-    end
-
-    def acpi_enabled
-      WebService.send_request(:ibios_settings_get_acpi_enabled, _this)
-    end
-
-    def acpi_enabled=(acpi_enabled)
-      WebService.send_request(:ibios_settings_set_acpi_enabled, _this.merge('ACPIEnabled' => acpi_enabled))
-    end
-
-    def ioapic_enabled
-      WebService.send_request(:ibios_settings_get_ioapic_enabled, _this)
-    end
-
-    def ioapic_enabled=(ioapic_enabled)
-      WebService.send_request(:ibios_settings_set_ioapic_enabled, _this.merge('IOAPICEnabled' => ioapic_enabled))
-    end
-
-    def time_offset
-      WebService.send_request(:ibios_settings_get_time_offset, _this)
-    end
-
-    def time_offset=(time_offset)
-      WebService.send_request(:ibios_settings_set_time_offset, _this.merge(:time_offset => time_offset))
-    end
-
-    def pxe_debug_enabled
-      WebService.send_request(:ibios_settings_get_pxe_debug_enabled, _this)
-    end
-
-    def pxe_debug_enabled=(pxe_debug_enabled)
-      WebService.send_request(:ibios_settings_set_pxe_debug_enabled, _this.merge('PXEDebugEnabled' => pxe_debug_enabled))
-    end
   end
 end

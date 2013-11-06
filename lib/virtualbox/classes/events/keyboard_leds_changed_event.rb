@@ -1,18 +1,9 @@
 module VBox
   class KeyboardLedsChangedEvent < Event
 
-    # Attributes
+    vb_attr :num_lock
+    vb_attr :caps_lock
+    vb_attr :scroll_lock
 
-    def num_lock
-      WebService.send_request(:i_keyboard_leds_changed_event_get_num_lock, _this)
-    end
-
-    def caps_lock
-      WebService.send_request(:i_keyboard_leds_changed_event_get_caps_lock, _this)
-    end
-
-    def scroll_lock
-      WebService.send_request(:i_keyboard_leds_changed_event_get_scroll_lock, _this)
-    end
   end
 end

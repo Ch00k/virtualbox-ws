@@ -1,10 +1,7 @@
 module VBox
   class MachineRegisteredEvent < MachineEvent
 
-    # Attributes
+    vb_attr :registered
 
-    def registered
-      WebService.send_request(:i_machine_registered_event_get_registered, _this)
-    end
   end
 end

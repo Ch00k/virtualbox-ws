@@ -4,6 +4,7 @@ module VBox
     def initialize
       WebService.connect
       @ref = nil
+      require_rel '/../classes'
     end
 
     def _this
@@ -27,9 +28,6 @@ module VBox
       @ref = nil
     end
 
-    def get_session_object
-      session = WebService.send_request(:i_websession_manager_get_session_object, _this)
-      Session.new(session)
-    end
+    vb_method :get_session_object
   end
 end

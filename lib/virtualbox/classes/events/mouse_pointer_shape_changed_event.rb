@@ -1,34 +1,13 @@
 module VBox
   class MousePointerShapeChangedEvent < Event
 
-    # Attributes
+    vb_attr :visible
+    vb_attr :alpha
+    vb_attr :xhot
+    vb_attr :yhot
+    vb_attr :width
+    vb_attr :height
+    vb_attr :shape
 
-    def visible
-      WebService.send_request(:i_mouse_pointer_shape_changed_event_get_visible, _this)
-    end
-
-    def alpha
-      WebService.send_request(:i_mouse_pointer_shape_changed_event_get_alpha, _this)
-    end
-
-    def xhot
-      WebService.send_request(:i_mouse_pointer_shape_changed_event_get_xhot, _this)
-    end
-
-    def yhot
-      WebService.send_request(:i_mouse_pointer_shape_changed_event_get_yhot, _this)
-    end
-
-    def width
-      WebService.send_request(:i_mouse_pointer_shape_changed_event_get_width, _this)
-    end
-
-    def height
-      WebService.send_request(:i_mouse_pointer_shape_changed_event_get_height, _this)
-    end
-
-    def shape
-      WebService.send_request(:i_mouse_pointer_shape_changed_event_get_shape, _this)
-    end
   end
 end

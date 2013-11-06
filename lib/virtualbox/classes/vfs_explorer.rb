@@ -1,49 +1,15 @@
 module VBox
   class VFSExplorer < Base
 
-    # Attributes
+    vb_attr :path
+    vb_attr :type
 
-    def path
-      WebService.send_request(:ivfs_explorer_get_path, _this)
-    end
+    vb_method :cd
+    vb_method :cd_up
+    vb_method :entry_list
+    vb_method :exists
+    vb_method :remove
+    vb_method :update
 
-    def type
-      WebService.send_request(:ivfs_explorer_get_type, _this)
-    end
-
-    # Methods
-
-    def cd(args={})
-      ensure_hash args
-      progress = WebService.send_request(:ivfs_explorer_cd, _this.merge(args))
-      Progress.new(progress)
-    end
-
-    def cd_up(args={})
-      ensure_hash args
-      progress = WebService.send_request(:ivfs_explorer_cd_up, _this.merge(args))
-      Progress.new(progress)
-    end
-
-    def entry_list(args={})
-      WebService.send_request(:ivfs_explorer_entry_list, _this.merge(args))
-    end
-
-    def exists(args={})
-      ensure_hash args
-      WebService.send_request(:ivfs_explorer_exists, _this.merge(args))
-    end
-
-    def remove(args={})
-      ensure_hash args
-      progress = WebService.send_request(:ivfs_explorer_remove, _this.merge(args))
-      Progress.new(progress)
-    end
-
-    def update(args={})
-      ensure_hash args
-      progress = WebService.send_request(:ivfs_explorer_update, _this.merge(args))
-      Progress.new(progress)
-    end
   end
 end
