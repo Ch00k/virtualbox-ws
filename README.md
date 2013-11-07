@@ -137,6 +137,7 @@ mutable.attach_device(:name => 'IDE1', :type => 'DVD', :medium => iso)
 # Set network adapter to bridged interface
 network_adapter = mutable.get_network_adapter(:slot => 0)
 network_adapter.attachment_type = 'Bridged'
+network_adapter.bridged_interface = virtual_box.host.network_interfaces.first.name
 
 # Enable USB
 mutable.add_usb_controller(:name => 'USB1', :type => 'OHCI')
