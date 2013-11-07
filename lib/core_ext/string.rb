@@ -13,6 +13,10 @@ class String
     end
   end
 
+  def vbox_class
+    VBox::ManagedObjectRef.new(self).get_interface_name
+  end
+
   def to_vbox_object(cls)
     return self if cls.nil?
     VBox.const_get(cls[1..-1]).new(self)

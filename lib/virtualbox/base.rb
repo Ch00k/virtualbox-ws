@@ -18,11 +18,11 @@ module VBox
     end
 
     def self.starts_with_acronym
-      define_method(:starts_with_acronym) {}
+      define_method(:acronym) {}
     end
 
     def self.soap_method(method_name, modifier=nil)
-      is_acronym_part = defined?(starts_with_acronym) ? '_' : ''
+      is_acronym_part = self.name.split('::').last.match(/^[A-Z]{2,}/).nil? ? '_' : ''
       modifier_part = modifier.nil? ? '' : modifier + '_'
       "i#{is_acronym_part}#{class_name}_#{modifier_part}#{method_name}".to_sym
     end
@@ -39,15 +39,11 @@ module VBox
       self.class.class_name
     end
 
-    def get_vbox_class(val)
-      ManagedObjectRef.new(val).get_interface_name
-    end
-
     def process_result(result, force_array=false)
       if force_array
         return [] if result.nil?
         result = result.to_a
-        vbox_class = get_vbox_class(result.first)
+        vbox_class = result.first.vbox_class
         result.map { |item| item.to_vbox_object(vbox_class) }
       else
         return if result.nil?
@@ -55,8 +51,10 @@ module VBox
           result.map { |item| process_result(item) }
         elsif result.is_a?(Hash)
           result.update(result) { |_, value| process_result(value) }
+        elsif !!result == result
+          result
         elsif !result.match(/^[0-9a-f]{16}-[0-9a-f]{16}$/).nil?
-          result.to_vbox_object(get_vbox_class(result))
+          result.to_vbox_object(result.vbox_class)
         else
           result.to_num
         end
@@ -67,21 +65,26 @@ module VBox
       force_array = options[:force_array]
       force_tag = options[:force_tag]
 
-      # A special case for VirtualBox methods that have lowercase 'v' in IPv6
       if name.to_s.start_with?('ipv6') || name.to_s.include?('advertise_default_ipv6_route_enabled')
-        name = name.to_s.gsub('ipv6', 'i_pv6').to_sym
+        native_name = name.to_s.gsub('ipv6', 'i_pv6').to_sym
+      elsif name.to_s.include?('_3d_')
+        native_name = name.to_s.gsub('_3d_', '3_d_').to_sym
+      elsif name.to_s.include?('_2d_')
+        native_name = name.to_s.gsub('_2d_', '2_d_').to_sym
+      else
+        native_name = name
       end
 
       define_method(name) do
-        result = WebService.send_request(soap_method(name, 'get'), _this)
+        result = WebService.send_request(soap_method(native_name, 'get'), _this)
         process_result(result, force_array)
       end
 
       define_method("#{name}=") do |value|
-        soap_message = {force_tag ? force_tag : name => value}
-        result = WebService.send_request(soap_method(name, 'set'), _this.merge(soap_message))
+        soap_message = {force_tag ? force_tag : native_name => value}
+        result = WebService.send_request(soap_method(native_name, 'set'), _this.merge(soap_message))
         process_result(result)
-      end if WebService.operations.include?(soap_method(name, 'set'))
+      end if WebService.operations.include?(soap_method(native_name, 'set'))
     end
 
     def self.vb_method(name, options={})

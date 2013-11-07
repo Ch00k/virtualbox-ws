@@ -90,3 +90,62 @@ irb> virtual_box.register_machine(:machine => machine)
 irb> machine.launch_vm_process(:session => web_session.get_session_object)
  => #<VBox::Progress:0x00000005934040 @ref="47efe040fcc25df7-000000000000001f"> 
 ```
+
+Example
+-------
+
+This is an example of creating a VM that is ready for Ubuntu x64 to be installed on it
+
+```ruby
+require 'virtualbox-ws'
+
+# Connect to the web service and logon
+# Get session object for future use
+web_session = VBox::WebsessionManager.new
+virtual_box = web_session.logon
+session = web_session.get_session_object
+
+# Create an Ubuntu x64 VM
+machine = virtual_box.create_machine(:name => 'machine_1112678', :os_type_id => 'Ubuntu_64')
+virtual_box.register_machine(:machine => machine)
+
+# Create a 50GB hard disk
+hard_disk = virtual_box.create_hard_disk(:format => 'vdi', :location => machine.settings_file_path.gsub('vbox', 'vdi'))
+hard_disk.create_base_storage(:logical_size => 50000000000)
+
+# Lock the VM for editing and obtain a mutable instance
+machine.lock_machine(:session => session)
+mutable = session.machine
+
+# Set some common properties
+mutable.cpu_count = 4
+mutable.memory_size = 1024
+mutable.rtc_use_utc = true
+mutable.vram_size = 16
+mutable.accelerate_3d_enabled = true
+mutable.audio_adapter.enabled = true
+
+# Add the hard disk
+mutable.add_storage_controller(:name => 'SATA1', :connection_type => 'SATA')
+mutable.attach_device(:name => 'SATA1', :type => 'HardDisk', :medium => hard_disk)
+
+# Add an ISO image
+mutable.add_storage_controller(:name => 'IDE1', :connection_type => 'IDE')
+iso = virtual_box.open_medium(:location => '/home/ay/Downloads/ubuntu-12.04.3-server-amd64.iso', :device_type => 'DVD')
+mutable.attach_device(:name => 'IDE1', :type => 'DVD', :medium => iso)
+
+# Set network adapter to bridged interface
+network_adapter = mutable.get_network_adapter(:slot => 0)
+network_adapter.attachment_type = 'Bridged'
+
+# Enable USB
+mutable.add_usb_controller(:name => 'USB1', :type => 'OHCI')
+mutable.add_usb_controller(:name => 'USB2', :type => 'EHCI')
+
+# Save changes and unlock the VM
+mutable.save_settings
+session.unlock_machine
+
+# Start the VM
+machine.launch_vm_process(:session => session)
+```

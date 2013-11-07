@@ -84,7 +84,7 @@ module VBox
     vb_attr :usb_proxy_available
 
     vb_method :add_storage_controller
-    vb_method :add_udb_controller
+    vb_method :add_usb_controller
     vb_method :attach_device
     vb_method :attach_device_without_medium
     vb_method :attach_host_pci_device
