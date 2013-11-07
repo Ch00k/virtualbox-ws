@@ -87,16 +87,13 @@ module VBox::WebService
     def parse_response(response)
       @logger.info("Response: #{response.body}")
       response_struct = response.body[response.body.keys[0]]
-      if response_struct.nil?
-        nil
+      return if response_struct.nil?
+      if response_struct.keys.length > 1
+        returnval = response_struct[:returnval].nil? || response_struct[:returnval]
+        response_struct.delete(:returnval)
+        [returnval, response_struct]
       else
-        if response_struct.keys.length > 1
-          returnval = response_struct[:returnval].nil? || response_struct[:returnval]
-          response_struct.delete(:returnval)
-          [returnval, response_struct]
-        else
-          response_struct[:returnval]
-        end
+        response_struct[:returnval]
       end
     end
   end

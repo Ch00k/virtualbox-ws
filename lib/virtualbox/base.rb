@@ -39,54 +39,26 @@ module VBox
       self.class.class_name
     end
 
-    def integerize(value)
-      if value.is_a?(Array)
-        value.map do |item|
-          begin
-            Integer(item)
-          rescue ArgumentError
-            item
-          end
-        end
-      else
-        begin
-          Integer(value)
-        rescue ArgumentError
-          value
-        end
-      end
+    def get_vbox_class(val)
+      ManagedObjectRef.new(val).get_interface_name
     end
 
-    def classify(result, force_array=false)
+    def process_result(result, force_array=false)
       if force_array
         return [] if result.nil?
         result = result.to_a
-
-        # Will assume here that in case of force_array all the items
-        # in the array are objects of the same class
-        val = result[0]
+        vbox_class = get_vbox_class(result.first)
+        result.map { |item| item.to_vbox_object(vbox_class) }
       else
-        val = result
-      end
-
-      # If the result is not a string return it immediately
-      return integerize(result) unless val.is_a?(String)
-
-      # Check for a match
-      return integerize(result) if val.match(/^[0-9a-f]{16}-[0-9a-f]{16}$/).nil?
-
-      # Get VirtualBox interface name
-      class_str = ManagedObjectRef.new(val).get_interface_name
-
-      # ManagedObjectRef.get_interface_name returns nil
-      # for inexisting object reference
-      if class_str.nil?
-        result
-      else
-        if force_array
-          result.to_a.map { |item| VBox.const_get(class_str[1..-1]).new(item) }
+        return if result.nil?
+        if result.is_a?(Array)
+          result.map { |item| process_result(item) }
+        elsif result.is_a?(Hash)
+          result.update(result) { |_, value| process_result(value) }
+        elsif !result.match(/^[0-9a-f]{16}-[0-9a-f]{16}$/).nil?
+          result.to_vbox_object(get_vbox_class(result))
         else
-          VBox.const_get(class_str[1..-1]).new(result)
+          result.to_num
         end
       end
     end
@@ -120,20 +92,6 @@ module VBox
         meth_args.referize!
         result = WebService.send_request(soap_method(name), _this.merge(meth_args))
         process_result(result, force_array)
-      end
-    end
-
-    def process_result(result, force_array=false)
-      if force_array
-        classify(result, true)
-      else
-        if result.is_a?(Array)
-          result.map do |item|
-            item.is_a?(Hash) ? item.update(item) { |_, value| classify(value) } : classify(item)
-          end
-        else
-          classify(result)
-        end
       end
     end
   end
