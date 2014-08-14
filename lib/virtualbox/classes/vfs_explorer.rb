@@ -1,8 +1,6 @@
 module VBox
   class VFSExplorer < Base
 
-    starts_with_acronym
-
     vb_attr :path
     vb_attr :type
 

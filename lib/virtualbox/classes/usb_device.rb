@@ -1,8 +1,6 @@
 module VBox
   class USBDevice < Base
 
-    starts_with_acronym
-
     vb_attr :id
     vb_attr :vendor_id
     vb_attr :product_id

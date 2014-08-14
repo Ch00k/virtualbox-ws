@@ -20,8 +20,8 @@ module VBox
     vb_attr :page_fusion_enabled
     vb_attr :graphics_controller_type
     vb_attr :vram_size, :force_tag => 'VRAMSize'
-    vb_attr :accelerate_3d_enabled
-    vb_attr :accelerate_2d_video_enabled
+    vb_attr :accelerate_3d_enabled, :force_savon_method => :accelerate3_d_enabled
+    vb_attr :accelerate_2d_video_enabled, :force_savon_method => :accelerate2_d_video_enabled
     vb_attr :monitor_count
     vb_attr :video_capture_enabled
     vb_attr :video_capture_screens, :force_array => true

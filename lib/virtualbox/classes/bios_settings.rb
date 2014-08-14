@@ -1,8 +1,6 @@
 module VBox
   class BIOSSettings < Base
 
-    starts_with_acronym
-
     vb_attr :logo_fade_in
     vb_attr :logo_fade_out
     vb_attr :logo_display_time

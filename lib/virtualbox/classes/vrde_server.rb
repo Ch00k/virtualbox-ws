@@ -1,8 +1,6 @@
 module VBox
   class VRDEServer < Base
 
-    starts_with_acronym
-
     vb_attr :enabled
     vb_attr :auth_type
     vb_attr :auth_timeout

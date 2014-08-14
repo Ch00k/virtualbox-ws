@@ -17,10 +17,6 @@ module VBox
       raise ArgumentError, 'Method arguments must be a hash' unless args.is_a?(Hash)
     end
 
-    def self.starts_with_acronym
-      define_method(:acronym) {}
-    end
-
     def self.soap_method(method_name, modifier=nil)
       is_acronym_part = self.name.split('::').last.match(/^[A-Z]{2,}/).nil? ? '_' : ''
       modifier_part = modifier.nil? ? '' : modifier + '_'
@@ -64,16 +60,9 @@ module VBox
     def self.vb_attr(name, options={})
       force_array = options[:force_array]
       force_tag = options[:force_tag]
+      force_savon_method = options[:force_savon_method]
 
-      if name.to_s.start_with?('ipv6') || name.to_s.include?('advertise_default_ipv6_route_enabled')
-        native_name = name.to_s.gsub('ipv6', 'i_pv6').to_sym
-      elsif name.to_s.include?('_3d_')
-        native_name = name.to_s.gsub('_3d_', '3_d_').to_sym
-      elsif name.to_s.include?('_2d_')
-        native_name = name.to_s.gsub('_2d_', '2_d_').to_sym
-      else
-        native_name = name
-      end
+      native_name = force_savon_method || name
 
       define_method(name) do
         result = WebService.send_request(soap_method(native_name, 'get'), _this)

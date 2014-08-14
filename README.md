@@ -53,7 +53,7 @@ irb> require 'virtualbox-ws'
  => true 
 ```
 
-An instance of VBox::WebsessionManager connects to VirtualBox SOAP wen service
+An instance of VBox::WebsessionManager connects to VirtualBox SOAP web service
 
 ```
 irb> web_session = VBox::WebsessionManager.new

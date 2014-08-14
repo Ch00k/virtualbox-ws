@@ -1,8 +1,6 @@
 module VBox
   class NATEngine < Base
 
-    starts_with_acronym
-
     vb_attr :network
     vb_attr :host_ip
     vb_attr :tftp_prefix, :force_tag => 'TFTPPrefix'

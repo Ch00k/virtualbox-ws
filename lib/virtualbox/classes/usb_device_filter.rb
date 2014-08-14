@@ -1,8 +1,6 @@
 module VBox
   class USBDeviceFilter < Base
 
-    starts_with_acronym
-
     vb_attr :name
     vb_attr :active
     vb_attr :vendor_id

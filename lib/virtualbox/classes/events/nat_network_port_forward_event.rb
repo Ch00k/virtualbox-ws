@@ -1,8 +1,6 @@
 module VBox
   class NATNetworkPortForwardEvent < NATNetworkAlterEvent
 
-    starts_with_acronym
-
     vb_attr :create
     vb_attr :ipv6
     vb_attr :name
