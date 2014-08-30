@@ -4,7 +4,7 @@ module VBox
     def initialize
       WebService.connect
       @ref = nil
-      require_rel '/../classes'
+      require_rel 'classes'
     end
 
     def _this
@@ -27,6 +27,5 @@ module VBox
       @ref = nil
     end
 
-    vb_method :get_session_object
   end
 end

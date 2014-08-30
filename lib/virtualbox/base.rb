@@ -57,34 +57,49 @@ module VBox
       end
     end
 
-    def self.vb_attr(name, options={})
-      force_array = options[:force_array]
-      force_tag = options[:force_tag]
-      force_savon_method = options[:force_savon_method]
-
-      native_name = force_savon_method || name
-
-      define_method(name) do
-        result = WebService.send_request(soap_method(native_name, 'get'), _this)
-        process_result(result, force_array)
-      end
-
-      define_method("#{name}=") do |value|
-        soap_message = {force_tag ? force_tag : native_name => value}
-        result = WebService.send_request(soap_method(native_name, 'set'), _this.merge(soap_message))
-        process_result(result)
-      end if WebService.operations.include?(soap_method(native_name, 'set'))
+    def fix_savon_method_name(method_name)
+      method_name.
+          gsub('_3d_', '3_d_').
+          gsub('_2d_', '2_d_').
+          gsub('_ipv6_', '_i_pv6_')
     end
 
-    def self.vb_method(name, options={})
-      force_array = options[:force_array]
+    def fix_savon_tag_name(method_name)
+      WebService::BROKEN_TAGS[method_name] if WebService::BROKEN_TAGS.include?(method_name)
+    end
 
-      define_method(name) do |meth_args = {}|
-        ensure_hash meth_args
-        meth_args.referize!
-        result = WebService.send_request(soap_method(name), _this.merge(meth_args))
-        process_result(result, force_array)
+    def arrayize?(method_name)
+      WebService::BROKEN_ARRAYS.include? method_name
+    end
+
+    def method_missing(name, *args)
+      name = fix_savon_method_name name
+      if name.end_with? '='
+        name = name.chop
+        savon_method = soap_method(name, 'set')
+        if WebService.operations.include?(savon_method)
+          savon_tag = fix_savon_tag_name(savon_method) || name
+          soap_message = {savon_tag => args[0]}
+          soap_body = _this.merge(soap_message)
+        else
+          return super
+        end
+      else
+        if WebService.operations.include?(soap_method(name, 'get'))
+          savon_method = soap_method(name, 'get')
+          soap_body = _this
+        elsif WebService.operations.include?(soap_method(name))
+          savon_method = soap_method(name)
+          args_hash = args[-1] || {}
+          ensure_hash args_hash
+          args_hash.referize!
+          soap_body = _this.merge(args_hash)
+        else
+          return super
+        end
       end
+      request = WebService.send_request(savon_method, soap_body)
+      process_result(request, arrayize?(savon_method))
     end
   end
 end
