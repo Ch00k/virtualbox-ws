@@ -14,7 +14,7 @@ module VBox
     end
 
     def ensure_hash(args)
-      raise ArgumentError, 'Method arguments must be a hash' unless args.is_a?(Hash)
+      args.is_a?(Hash) ? args : raise(ArgumentError, 'Method arguments must be a hash')
     end
 
     def self.soap_method(method_name, modifier=nil)
@@ -79,8 +79,7 @@ module VBox
         savon_method = soap_method(name, 'set')
         if WebService.operations.include?(savon_method)
           savon_tag = fix_savon_tag_name(savon_method) || name
-          soap_message = {savon_tag => args[0]}
-          soap_body = _this.merge(soap_message)
+          soap_body = _this.merge(savon_tag => args[0])
         else
           return super
         end
@@ -90,10 +89,8 @@ module VBox
           soap_body = _this
         elsif WebService.operations.include?(soap_method(name))
           savon_method = soap_method(name)
-          args_hash = args[-1] || {}
-          ensure_hash args_hash
-          args_hash.referize!
-          soap_body = _this.merge(args_hash)
+          args_hash = ensure_hash(args[-1] || {})
+          soap_body = _this.merge(args_hash.referize!)
         else
           return super
         end

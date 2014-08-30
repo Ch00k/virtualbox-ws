@@ -32,7 +32,6 @@ module VBox
       'Keyboard',
       'Machine',
       'MachineDebugger',
-      'ManagedObjectRef',
       'Medium',
       'MediumFormat',
       'Mouse',
@@ -137,7 +136,7 @@ module VBox
   ]
 
   CLASSES.each do |klass|
-    Object.const_set klass, Class.new(Base)
+    VBox.const_set klass, Class.new(Base)
   end
 
 end
