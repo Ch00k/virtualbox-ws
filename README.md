@@ -110,7 +110,8 @@ machine = virtual_box.create_machine(:name => 'machine_1112678', :os_type_id => 
 virtual_box.register_machine(:machine => machine)
 
 # Create a 50GB hard disk
-hard_disk = virtual_box.create_hard_disk(:format => 'vdi', :location => machine.settings_file_path.gsub('vbox', 'vdi'))
+hard_disk = virtual_box.create_hard_disk(:format => virtual_box.system_properties.default_hard_disk_format,
+                                         :location => machine.settings_file_path.gsub('vbox', 'vdi'))
 hard_disk.create_base_storage(:logical_size => 50000000000)
 
 # Lock the VM for editing and obtain a mutable instance
@@ -131,7 +132,8 @@ mutable.attach_device(:name => 'SATA1', :type => 'HardDisk', :medium => hard_dis
 
 # Add an ISO image
 mutable.add_storage_controller(:name => 'IDE1', :connection_type => 'IDE')
-iso = virtual_box.open_medium(:location => '/home/ay/Downloads/ubuntu-12.04.3-server-amd64.iso', :device_type => 'DVD')
+iso = virtual_box.open_medium(:location => File.expand_path('~/ubuntu-14.04.1-server-amd64.iso'),
+                              :device_type => 'DVD')
 mutable.attach_device(:name => 'IDE1', :type => 'DVD', :medium => iso)
 
 # Set network adapter to bridged interface
