@@ -61,7 +61,7 @@ module VBox
       method_name.
           gsub('_3d_', '3_d_').
           gsub('_2d_', '2_d_').
-          gsub('_ipv6_', '_i_pv6_')
+          gsub('ipv6_', 'i_pv6_')
     end
 
     def fix_savon_tag_name(method_name)
