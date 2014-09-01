@@ -75,6 +75,8 @@ module VBox
         :i_medium_get_properties,
         :i_medium_get_snapshot_ids,
         :i_medium_format_get_capabilities,
+        :i_nat_network_get_port_forward_rules4,
+        :i_nat_network_get_port_forward_rules6,
         :i_network_adapter_get_properties,
         :i_performance_collector_disable_metrics,
         :i_performance_collector_enable_metrics,
